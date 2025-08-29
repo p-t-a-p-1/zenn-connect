@@ -1,0 +1,151 @@
+{
+	"Zenn Alert Info": {
+			"prefix": "zenn-info",
+			"body": [
+					":::message",
+					"$1",
+					":::",
+					"$0"
+			],
+			"description": "Zenn情報メッセージ"
+	},
+	"Zenn Alert Warning": {
+			"prefix": "zenn-warn",
+			"body": [
+					":::message alert",
+					"$1",
+					":::",
+					"$0"
+			],
+			"description": "Zenn警告メッセージ"
+	},
+	"Zenn Details": {
+			"prefix": "zenn-details",
+			"body": [
+					":::details ${1:クリックで詳細を表示}",
+					"$2",
+					":::",
+					"$0"
+			],
+			"description": "Zenn詳細表示"
+	},
+	"Zenn Code Block": {
+			"prefix": "zenn-code",
+			"body": [
+					"```${1:javascript}:${2:filename}",
+					"$3",
+					"```",
+					"$0"
+			],
+			"description": "Zennコードブロック（ファイル名付き）"
+	},
+	"Zenn Diff": {
+			"prefix": "zenn-diff",
+			"body": [
+					"```diff ${1:javascript}:${2:filename}",
+					"$3",
+					"```",
+					"$0"
+			],
+			"description": "Zenn差分表示"
+	},
+	"Zenn Math Block": {
+			"prefix": "zenn-math",
+			"body": [
+					"$$",
+					"$1",
+					"$$",
+					"$0"
+			],
+			"description": "Zenn数式ブロック"
+	},
+	"Zenn Inline Math": {
+			"prefix": "zenn-imath",
+			"body": [
+					"$$$1$$"
+			],
+			"description": "Zennインライン数式"
+	},
+	"Zenn Mermaid": {
+			"prefix": "zenn-mermaid",
+			"body": [
+					"```mermaid",
+					"graph TD",
+					"    A[$1] --> B[$2]",
+					"```",
+					"$0"
+			],
+			"description": "Zenn Mermaid図"
+	},
+	"Zenn Link Card": {
+			"prefix": "zenn-link",
+			"body": [
+					"@[card](${1:https://example.com})",
+					"$0"
+			],
+			"description": "Zennリンクカード"
+	},
+	"Zenn Tweet": {
+			"prefix": "zenn-tweet",
+			"body": [
+					"@[tweet](${1:https://twitter.com/username/status/123456789})",
+					"$0"
+			],
+			"description": "Zennツイート埋め込み"
+	},
+	"Zenn YouTube": {
+			"prefix": "zenn-youtube",
+			"body": [
+					"@[youtube](${1:video_id})",
+					"$0"
+			],
+			"description": "ZennYouTube埋め込み"
+	},
+	"Zenn CodePen": {
+			"prefix": "zenn-codepen",
+			"body": [
+					"@[codepen](${1:https://codepen.io/username/pen/abc123})",
+					"$0"
+			],
+			"description": "ZennCodePen埋め込み"
+	},
+	"Zenn JSFiddle": {
+			"prefix": "zenn-jsfiddle",
+			"body": [
+					"@[jsfiddle](${1:https://jsfiddle.net/username/abc123})",
+					"$0"
+			],
+			"description": "ZennJSFiddle埋め込み"
+	},
+	"Zenn Article Header": {
+			"prefix": "zenn-header",
+			"body": [
+					"---",
+					"title: \"${1:記事タイトル}\"",
+					"emoji: \"${2:📚}\"",
+					"type: \"${3|tech,idea|}\"",
+					"topics: [${4:\"javascript\", \"react\"}]",
+					"published: ${5|true,false|}",
+					"---",
+					"$0"
+			],
+			"description": "Zenn記事ヘッダー"
+	},
+	"Zenn Book Header": {
+			"prefix": "zenn-book-header",
+			"body": [
+					"---",
+					"title: \"${1:本のタイトル}\"",
+					"emoji: \"${2:📚}\"",
+					"type: \"${3|tech,idea|}\"",
+					"topics: [${4:\"javascript\", \"react\"}]",
+					"published: ${5|true,false|}",
+					"price: ${6|0,200,300,400,500|}",
+					"chapters:",
+					"  - ${7:chapter1}",
+					"---",
+					"$0"
+			],
+			"description": "Zenn本ヘッダー"
+	}
+}
