@@ -43,7 +43,7 @@ Domain Storytelling（ドメインストーリーテリング）について、�
 - ※ここで具体的なシナリオ（例：映画のチケット予約、経費精算など）を紹介する。
 
 ## 6. ツール紹介
-- WPS Domain Storytelling Modeler (公式ツール)
+- https://github.com/WPS/egon.io
 - ホワイトボードや紙での実施
 
 ## 7. まとめ
