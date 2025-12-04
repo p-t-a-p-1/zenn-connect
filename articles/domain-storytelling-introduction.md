@@ -2,8 +2,8 @@
 title: "要件定義の手戻りを防ぐ！ドメイン知識を「物語」にする可視化術"
 emoji: "🗣️"
 type: "tech" # tech：技術記事 / idea：アイデア
-topics: ["domainstorytelling", "ddd", "design", "modeling", "ドメイン駆動設計"]
-published: false
+topics: ["domainstorytelling", "ddd", "modeling", "ドメイン駆動設計", "要件定義"]
+published: true
 publication_name: "mavericks"
 ---
 
