@@ -1,5 +1,5 @@
 ---
-title: "要件定義の手戻りを防ぐ！ドメイン知識を「物語」にする可視化術"
+title: "要件定義の手戻りを防ぐ、ドメイン知識を「物語」にする Domain Storytelling"
 emoji: "🗣️"
 type: "tech" # tech：技術記事 / idea：アイデア
 topics: ["domainstorytelling", "ddd", "modeling", "ドメイン駆動設計", "要件定義"]
