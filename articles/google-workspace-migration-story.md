@@ -1,9 +1,9 @@
 ---
 title: "全社で生成AIを活用するためにGoogle Workspaceへ移行した話"
-emoji: "🗂"
+emoji: "💭"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["googleworkspace", "gemini", "業務効率化"]
-published: false
+published: true
 publication_name: "mavericks"
 ---
 
@@ -131,7 +131,7 @@ Google Workspace Studioは、Google Workspace アプリ同士・Geminiを連携�
 
 **絵文字（✅など）、誇張表現、太字乱用は要注意**
 わかる人は一瞬でわかります。
-ベースの作成は良いですが、必ず内容確認し自分の考えを入れましょう。
+ベースの作成は良いですが、必ず内容確認し自分の考えを入れた方が良いことを伝えました。
 
 ![微妙な調査報告の例](/images/google-workspace-migration-story/image1.png)
 *微妙な調査報告の例*
