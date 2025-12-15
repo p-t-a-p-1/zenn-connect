@@ -14,45 +14,56 @@ published: false
 
 今回は、Antigravityを活用して、レトロな「パタパタ時計」風のメッセージボードアプリを爆速で開発した過程を共有します！！
 
-実際のデプロイ周りは **Cloudflare Workers** を採用し、**Wasm (WebAssembly)** を用いた動的OGP生成なども行っています...！
+TODO：家の時計の写真を貼る
 
-# 作ったもの「Patapata Board」
-パタパタ表示機（Split-Flap Display）の挙動をWeb上で再現したクリエイティブツールです。
+ふと↑のようなものをWebで表現したいと思い、Antigravityを活用して開発してみました。
 
-[https://patapata-board.ptap1.workers.dev/](https://patapata-board.ptap1.workers.dev/)
+実際のデプロイ周りは **Cloudflare Workers** を採用し、**Wasm (WebAssembly) を用いた動的OGP生成**なども行っています...！
 
-:::message
-**主な機能**
+## 話すこと
 
-* **高精度なアニメーション**: CSS 3D Transformを駆使し、物理的なカードの回転をリアルに再現。
-* **URL連動 & OGP生成**: 入力したメッセージがURLに保存され、SNSシェア時にその内容が「パタパタボードの画像」として自動生成されます。
-* **デスクトップ時計**: 画面右下に現在時刻を表示するウィジェットを搭載。
-:::
+- 作ったものの紹介
+- Antigravityでの爆速開発
+- Cloudflare Workersでのデプロイ
+
+# パタパタ時計風画像生成サービスについて
+
+@[card](https://patapata-board.ptap1.workers.dev/)
+
+## 主な機能
+
+* **パタパタアニメーション**
+  * CSS 3D Transformでのリアルな回転を再現しました！
+* **動的OGP生成**
+  * 入力したメッセージがURLに保存され、SNSシェア時にその内容が「パタパタボードの画像」として自動生成されます！
+* **画像出力**
+  * 入力したメッセージを画像として出力することができます！
 
 
-**簡易的なものです！！**
+gif動画を生成するようなものも作りたかったですが一旦保留にしてます...！
 
 
 # 技術構成
 
 Antigravity上で、以下のスタックを用いて開発しました。
 
-| Category | Tech Stack | Note |
+| カテゴリ | 技術名 | 説明 |
 | --- | --- | --- |
-| **Framework** | **React Router v7** | Framework Mode / SSR Enabled |
-| **Platform** | **Cloudflare Workers** | エッジでのSSRとAPI処理 |
-| **Language** | TypeScript |  |
-| **Styling** | Tailwind CSS v4 |  |
-| **OG Image** | **Satori + resvg (Wasm)** | `workers-og` を使用 |
-| **IDE** | **Google Antigravity** | Agentによる自律開発 |
-| **AI Model** | **Claude Opus 4.5** | Antigravity内で使用 |
+| **フレームワーク** | [**React Router v7**](https://reactrouter.com/) | Framework Mode / SSR Enabled |
+| **プラットフォーム** | [**Cloudflare Workers**](https://www.cloudflare.com/ja-jp/developer-platform/products/workers/) | エッジでのSSRとAPI処理 |
+| **言語** | TypeScript |  |
+| **スタイリング** | Tailwind CSS v4 |  |
+| **OG Image** | [**Satori**](https://github.com/vercel/satori) + resvg (Wasm)** | `workers-og` を使用 |
+| **IDE** | [**Google Antigravity**](https://antigravity.google/) | Agentによる自律開発 |
+| **AI Model** | **Claude Opus 4.5** & **Gemini 3.0 Pro** | Antigravity内で使用しているモデル |
 
 ## 技術的なこだわりポイント
 
 ### 1. Cloudflare Workers × React Router v7
 
-デプロイ先には、コールドスタートがほぼゼロで、世界中のエッジで動作する **Cloudflare Workers** を選択しました。
-React Router v7 は Cloudflare Workers アダプターを標準でサポートしており、`wrangler.json` の設定だけで簡単にSSR環境が構築できます。
+デプロイ先には、**Cloudflare Workers** を選択しました。
+また、React Router v7 は Cloudflare Workers アダプターを標準でサポートしており、
+`wrangler.json` の設定だけで簡単にSSR環境が構築できます。
 
 ```json:wrangler.json
 {
@@ -90,13 +101,10 @@ React Router v7 は Cloudflare Workers アダプターを標準でサポート�
 
 ```
 
-:::details 実装のイメージ（概念コード）
-ユーザーがシェア用URLにアクセスすると、Workersがリクエストを受け取り、クエリパラメータのテキストを `Satori` でレイアウト解析、`resvg-wasm` でPNG化して返却します。これにより、どんなテキストでも瞬時にパタパタボード風の画像を生成できます。
-:::
-
 # 実際の開発フロー
 
-実際にどのように開発を進めたかを紹介します。
+実際にどのように開発を進めたかを紹介します！！
+
 
 ## 1. Geminiと対話して要件を詰める
 
@@ -107,7 +115,8 @@ React Router v7 は Cloudflare Workers アダプターを標準でサポート�
 見た目は空港の案内板のようなレトロな感じで
 ```
 
-対話形式で要件を詰めていきます。作りたいもののビジュアルがイメージできるのであればツールの"Canvas"機能で作るのが良いです。
+対話形式で要件を詰めていきます。
+作りたいもののビジュアルがイメージできるのであればツールの"Canvas"機能で作るのが良いです。
 納得のいくものができた段階で、以下の指示を行います。
 
 ```
@@ -116,9 +125,103 @@ React Router v7 は Cloudflare Workers アダプターを標準でサポート�
 
 これで包括的で詳細なPRD（仕様書）が生成されます。
 
+
+実際に生成したPRDは以下です。
+
+:::details Patapata Generator PRD
+# Product Requirements Document (PRD): Patapata Board (RR7 Edition)
+
+## 1. プロダクト概要
+
+  * **プロダクト名**: Patapata Board (Single Row Generator)
+  * **概要**: パタパタ表示機（Split-Flap Display）の挙動をWeb上で高精度にシミュレートするクリエイティブツール。
+  * **コアバリュー**:
+    1.  **動画素材作成**: 入力したメッセージのアニメーションを動画として書き出し、SNSで利用できる。
+    2.  **動的シェア体験**: URLをSNSに貼るだけで、入力内容が反映された「ボードの静止画」がOGPとして自動生成され、クリック率を高める。
+    3.  **デスクトップアクセサリ**: 画面右下に常時表示される「パタパタ時計」により、開いておきたくなる実用性を兼ね備える。
+
+## 2. ターゲットユーザー
+
+  * **SNSクリエイター**: X (Twitter) や Instagram のストーリーズ/投稿用に、レトロテックな演出素材を求める層。
+  * **エンジニア・Webデザイナー**: 最新の Web技術（React Router v7, Edge Functions）のショーケースとして興味を持つ層。
+  * **デスクワーカー**: 作業用BGMの代わりに、視覚的に心地よい「時計」としてブラウザを開いておきたい層。
+
+## 3. 技術スタック (Tech Stack)
+
+  * **Framework**: **React Router v7** (Framework Mode / SSR Enabled)
+  * **Language**: TypeScript
+  * **Styling**: Tailwind CSS
+  * **Image Generation**: `@vercel/og` (Satori Engine)
+  * **Deployment**: Vercel (Edge Functions)
+  * **Icons**: Lucide React
+
+## 4. 機能要件 (Functional Requirements)
+
+### 4.1. メインボード (Main Display)
+
+  * **表示仕様**: 1行 × 22文字（22ビット）。
+  * **アニメーション**: CSS 3D Transform による物理的なカード回転動作。
+  * **状態同期 (Two-way Binding)**:
+      * URLクエリ (`?text=HELLO`) とボードの表示内容を同期。
+      * ページロード時にURLパラメータを読み取り、アニメーションを自動再生する。
+
+### 4.2. 時計ウィジェット (Clock Widget)
+
+  * **配置**: 画面右下 (Bottom Right) に固定表示。
+  * **表示内容**: 現在のローカル日時。
+      * フォーマット: `MM-DD HH:MM` (例: `12-12 16:30`)
+      * 合計: 11文字分を使用（余白含む）。
+  * **動作仕様**:
+      * 1分ごとに表示を更新し、変化した桁のみがパタパタと回転する。
+      * **Client-side Only**: ユーザーのローカルタイムを表示するため、サーバーサイドレンダリング（SSR）は行わず、マウント後に表示する（Hydration Mismatch回避）。
+  * **レスポンシブ**: モバイル画面（幅が狭い場合）では視認性を考慮し、非表示または下部中央へ配置変更する。
+
+### 4.3. 動画書き出し (Video Export)
+
+  * **機能**: ブラウザ標準の `getDisplayMedia` API を使用して画面収録を行う。
+  * **自動化**: 「Export」ボタン押下時に、UI（入力欄や**時計ウィジェット**）を一時的に非表示にし、メインボードのみを録画する。
+
+### 4.4. 動的OGP生成 (Server-Side / Resource Route)
+
+  * **機能**: シェアされたURLのクエリパラメータに基づいて、ボードの静止画をサーバーサイドで動的生成する。
+  * **仕様**:
+      * 背景色: 黒 (\#111)。
+      * レイアウト: 1行×22文字のグリッド。
+      * テキスト: URLパラメータの `text` を反映。空のセルはブランク画像で埋める。
+
+## 5. ルーティング & URL設計
+
+React Router v7 のルーティングシステムを使用。
+
+| URL パス | ファイル (例) | 役割 |
+| :--- | :--- | :--- |
+| `/` | `app/routes/_index.tsx` | メイン画面。ボード、入力UI、時計ウィジェットを表示。 |
+| `/resource/og` | `app/routes/resource.og.tsx` | **Resource Route**。OGP画像を生成して返すAPIエンドポイント。 |
+
+## 6. ロードマップ
+
+1.  **Phase 1: コア機能実装**
+      * React Router v7 プロジェクト作成。
+      * メインのパタパタボードとアニメーション実装。
+      * URL同期機能の実装。
+2.  **Phase 2: サーバーサイド機能**
+      * `@vercel/og` の導入。
+      * Resource Route (`resource.og.tsx`) の実装とデザイン調整。
+      * `meta` タグの動的出力設定。
+3.  **Phase 3: ウィジェット & エクスポート**
+      * `ClockWidget` の実装と配置。
+      * 画面録画機能 (`getDisplayMedia`) の実装。
+      * 録画時に時計やUIを隠す「Clean Mode」制御の実装。
+:::
+
 ## 2. Agentによる自律実装
 
-ここがAntigravityの真骨頂です。生成されたPRDを元に、実装をAgentに任せます。
+ここから実際にAntigravityを活用して開発します。
+
+重要なポイントとして、**開発のための初期構築（インストールなど）**は人力で行った方が良いです。
+リミット達するのを防ぐため、AIに任せなくても良い、かつハードル低めな初期構築作業は人間が行うのが望ましいです...！
+
+
 
 > **Instruction**: `docs/prd.md` に基づいて、React Router v7 と Cloudflare Workers のプロジェクトを初期化し、メインのボードコンポーネントを実装してください。
 
@@ -144,6 +247,13 @@ Antigravityには **Browser Agent** が搭載されており、AIが実際にChr
 3. **スクリーンショットを撮影してアーティファクトとして保存**
 
 という手順を自動で行います。人間が手動でブラウザを開く必要すらなく、開発体験として非常に未来的でした。
+
+## 脆弱性の簡易チェック
+
+この記事内で紹介されているプロンプトを参考に、簡易脆弱性診断を行いました。
+https://zenn.dev/junpei_katayama/articles/self-vulnerability-check
+
+レポート出力
 
 
 # Antigravityの良さ
