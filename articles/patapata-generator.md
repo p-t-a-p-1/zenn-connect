@@ -1,8 +1,8 @@
 ---
-title: "Antigravity + Cloudflare Workersで爆速無料開発、 ~ パタパタ時計風画像生成サービス ~"
+title: "Antigravity入門、爆速無料開発 ~ パタパタ時計風テキスト生成サービス ~"
 emoji: "💨"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["Antigravity", "Claude", "ReactRouter", "CloudflareWorkers", "Wasm"]
+topics: ["Antigravity", "Claude", "ReactRouter", "CloudflarePages", "Wasm"]
 published: false
 ---
 
@@ -14,31 +14,23 @@ published: false
 
 今回は、Antigravityを活用して、レトロな「パタパタ時計」風のメッセージボードアプリを爆速で開発した過程を共有します！！
 
-TODO：家の時計の写真を貼る
+![家にあるパタパタ時計](/images/patapata-board/20251216-083231.jpg)
+*家にあるパタパタ時計*
+
+おじいちゃん・おばあちゃんの家によくあるやつです。近所の雑貨屋で購入しました。
 
 ふと↑のようなものをWebで表現したいと思い、Antigravityを活用して開発してみました。
 
-実際のデプロイ周りは **Cloudflare Workers** を採用し、**Wasm (WebAssembly) を用いた動的OGP生成**なども行っています...！
-
 ## 話すこと
 
-- 作ったものの紹介
-- Antigravityでの爆速開発
-- Cloudflare Workersでのデプロイ
+- 作ったものの紹介（3割）
+- Antigravityでの爆速開発（7割）
 
-# パタパタ時計風画像生成サービスについて
+# パタパタ時計風テキスト生成サービス
 
-@[card](https://patapata-board.ptap1.workers.dev/)
+以下のサイトから実際に生成される様子を確認できます！！
 
-## 主な機能
-
-* **パタパタアニメーション**
-  * CSS 3D Transformでのリアルな回転を再現しました！
-* **動的OGP生成**
-  * 入力したメッセージがURLに保存され、SNSシェア時にその内容が「パタパタボードの画像」として自動生成されます！
-* **画像出力**
-  * 入力したメッセージを画像として出力することができます！
-
+@[card](https://patapata-board.pages.dev/)
 
 gif動画を生成するようなものも作りたかったですが一旦保留にしてます...！
 
@@ -50,80 +42,67 @@ Antigravity上で、以下のスタックを用いて開発しました。
 | カテゴリ | 技術名 | 説明 |
 | --- | --- | --- |
 | **フレームワーク** | [**React Router v7**](https://reactrouter.com/) | Framework Mode / SSR Enabled |
-| **プラットフォーム** | [**Cloudflare Workers**](https://www.cloudflare.com/ja-jp/developer-platform/products/workers/) | エッジでのSSRとAPI処理 |
+| **プラットフォーム** | [**Cloudflare Pages**](https://pages.cloudflare.com/) | FunctionsによるAPI処理とホスティング |
 | **言語** | TypeScript |  |
 | **スタイリング** | Tailwind CSS v4 |  |
-| **OG Image** | [**Satori**](https://github.com/vercel/satori) + resvg (Wasm)** | `workers-og` を使用 |
+| **OG Image** | [**@cloudflare/pages-plugin-vercel-og**](https://developers.cloudflare.com/pages/functions/plugins/vercel-og/) | Pages FunctionsのMiddlewareで使用 |
 | **IDE** | [**Google Antigravity**](https://antigravity.google/) | Agentによる自律開発 |
 | **AI Model** | **Claude Opus 4.5** & **Gemini 3.0 Pro** | Antigravity内で使用しているモデル |
 
 ## 技術的なこだわりポイント
 
-### 1. Cloudflare Workers × React Router v7
+### 1. Cloudflare Pages × React Router v7
 
-デプロイ先には、**Cloudflare Workers** を選択しました。
-また、React Router v7 は Cloudflare Workers アダプターを標準でサポートしており、
-`wrangler.json` の設定だけで簡単にSSR環境が構築できます。
+デプロイ先には、**Cloudflare Pages** を選択しました。
+React Router v7 は Cloudflare Workers/Pages アダプターを標準でサポートしており、
+`wrangler.json` の設定だけで簡単にデプロイ環境が構築できます。
 
-```json:wrangler.json
-{
-  "name": "patapata-board",
-  "main": "./workers/app.tsx",
-  "compatibility_date": "2024-12-13",
-  "compatibility_flags": [
-    "nodejs_compat"
-  ],
-  // ...
-}
+### 2. Middlewareによる動的OGP生成
 
-```
+動的OGP生成には、[**Cloudflare Pages Functions Middleware**](https://developers.cloudflare.com/pages/functions/middleware/) を活用しています。
 
-### 2. Wasmによる動的OGP生成 (Edge Side)
+`functions/_middleware.tsx` にて `/og-image.png` へのリクエストをインターセプトし、
+その場でOGP画像を生成して返しています。また、通常のHTMLリクエストに対しては自動的に `<meta>` タグを注入する処理も行っています。
 
-本アプリの目玉機能である「シェア画像の動的生成」には、**WebAssembly (Wasm)** を活用しています。
+ライブラリには `@cloudflare/pages-plugin-vercel-og` を採用しました。
+これは Vercel OGを Cloudflare Pages 上で簡単に使えるようにしたプラグインです。
 
-通常、OGP画像の生成には `canvas` や `puppeteer` が使われますが、これらはWorkersのような軽量なエッジ環境では動作させるのが困難です。そこで今回は、以下の構成で実装しました。
+以下の方の記事を参考にしました...！！
+@[card](https://re-engines.com/2025/01/27/react-router-v7-ogp/)
 
-* **Satori**: HTML/CSS (JSX) を SVG に変換するライブラリ。
-* **resvg-wasm**: Rust製のSVGレンダリングエンジン `resvg` のWasm版。SVGをPNGに高速変換。
-* **workers-og**: これらをCloudflare Workers上で簡単に扱えるようにするラッパー。
 
-`package.json` にある通り、これらのWasm関連ライブラリを組み合わせることで、**サーバーレスかつ爆速なOGP生成** を実現しています。
-
-```json:package.json
-  "dependencies": {
-    "@cf-wasm/resvg": "^0.3.3",
-    "@resvg/resvg-wasm": "^2.6.2",
-    "satori": "^0.18.3",
-    "workers-og": "^0.0.27",
-    // ...
-  }
-
-```
+![出力例](/images/patapata-board/og-demo-image.png)
+*出力例*
 
 # 実際の開発フロー
 
 実際にどのように開発を進めたかを紹介します！！
+その中で、Antigravityを最大限活用する方法を紹介します。
 
-
-## 1. Geminiと対話して要件を詰める
+## 1. AIエージェントと対話して要件を詰める
 
 まず、Antigravityのチャット機能で作りたいアプリのイメージを伝えます。
+大事なことは対話するということです。
+こちら主導で内容精査してもらうのもありですが、あまり深くまでイメージできていなかったり質問されてその時考えたいといった場合は対話することを意識すると良いです！
 
 ```
 あなたと対話しながら「パタパタ表示機」のWebアプリを作りたいです。
 見た目は空港の案内板のようなレトロな感じで
 ```
 
-対話形式で要件を詰めていきます。
-作りたいもののビジュアルがイメージできるのであればツールの"Canvas"機能で作るのが良いです。
+このような導入から、対話形式で要件を詰めていきます。私はGemini 3.0 Proを用いました。
 納得のいくものができた段階で、以下の指示を行います。
+
 
 ```
 これまでのやり取りを踏まえPRD（仕様書）を出力してください
 ```
 
 これで包括的で詳細なPRD（仕様書）が生成されます。
+
+:::message
+作りたいもののビジュアルがイメージできるのであれば、Geminiのツール"Canvas"機能でモック作成 → PRD出力の方が良いです！
+:::
 
 
 実際に生成したPRDは以下です。
@@ -196,7 +175,7 @@ React Router v7 のルーティングシステムを使用。
 | URL パス | ファイル (例) | 役割 |
 | :--- | :--- | :--- |
 | `/` | `app/routes/_index.tsx` | メイン画面。ボード、入力UI、時計ウィジェットを表示。 |
-| `/resource/og` | `app/routes/resource.og.tsx` | **Resource Route**。OGP画像を生成して返すAPIエンドポイント。 |
+| `/resource/og` | `functions/_middleware.tsx` | **Middleware**。`/og-image.png` を生成し、HTMLレスポンスにmetaタグを注入する。 |
 
 ## 6. ロードマップ
 
@@ -205,9 +184,9 @@ React Router v7 のルーティングシステムを使用。
       * メインのパタパタボードとアニメーション実装。
       * URL同期機能の実装。
 2.  **Phase 2: サーバーサイド機能**
-      * `@vercel/og` の導入。
-      * Resource Route (`resource.og.tsx`) の実装とデザイン調整。
-      * `meta` タグの動的出力設定。
+      * `@cloudflare/pages-plugin-vercel-og` の導入。
+      * Middleware (`functions/_middleware.tsx`) の実装。
+      * OGP画像の動的生成ロジックの実装。
 3.  **Phase 3: ウィジェット & エクスポート**
       * `ClockWidget` の実装と配置。
       * 画面録画機能 (`getDisplayMedia`) の実装。
@@ -219,60 +198,140 @@ React Router v7 のルーティングシステムを使用。
 ここから実際にAntigravityを活用して開発します。
 
 重要なポイントとして、**開発のための初期構築（インストールなど）**は人力で行った方が良いです。
-リミット達するのを防ぐため、AIに任せなくても良い、かつハードル低めな初期構築作業は人間が行うのが望ましいです...！
+今回無料プランということもあり、利用制限があります。
+リミットに達するのを防ぐため、AIに任せなくても良い、かつハードル低めな初期構築作業なので、人間が行うのが望ましいです。
 
+初期構築したプロジェクトにdocsフォルダを作成し、先ほど出力したprd.mdを配置します。
+その後、実際にAntigravityのAIエージェントを活用し以下のようなやり取りで開発を始めます。
 
+初回はClaude Opusを利用しました。
+```
+@prd.mdを参照して、実装を開始してください
+```
 
-> **Instruction**: `docs/prd.md` に基づいて、React Router v7 と Cloudflare Workers のプロジェクトを初期化し、メインのボードコンポーネントを実装してください。
+Antigravityは実装プラン（Implementation Plan）を生成してくれるので、内容をレビューして実装を開始します。
 
-Agent Managerがタスクを分解し、「プロジェクト作成」「コンポーネント実装」「スタイリング」を次々と実行していきます。今回採用した **Claude Opus 4.5** はコーディング能力が非常に高く、複雑なCSS 3D Transformのアニメーションも一発で動作するレベルで出力してくれました。
+## 2.5 *~ 脱線 ~* Antigravityの設定について
 
+今回は最小限の設定にとどめています。
+
+### Antigravity全体の設定
+
+@[card](https://dev.classmethod.jp/articles/google-antigravity-five-tips/)
+
+この方の記事の **Customizations でのグローバル指示** を参考にさせていただきました。不便な点は全くなく良い感じの出力になっています。
 
 ### Agentによるコミット作成
 
 Claude CodeやCursorにはスラッシュコマンド機能があると思いますが、
 AntigravityにはWorkflowという機能で同等のことが可能です。
 
+![コミット用Workflow](/images/patapata-board/commit.png)
+*コミット用Workflow設定例*
 
-## 3. Browser Agentによる動作確認とキャプチャ
+実際の開発に合わせて内容は改変してください
+```
+# Gitコミット作成エージェント
+
+## 役割と目的
+あなたは熟練した開発者であり、明確で正確なGitコミットを作成する責任があります。あなたの目標は、現在の変更点を分析し、作業内容を効果的に要約した単一のコミットを作成することです。
+
+## 手順1：コンテキスト（状況）の把握
+まず、以下のコマンドを実行して、現在のワークスペースの状態を把握してください。この情報収集を行わずに次の手順に進まないでください。
+
+1. ステータスの確認: git status を実行し、ステージングされている変更とされていない変更を確認する。
+2. 差分の分析: git diff HEAD を実行し、具体的なコードの変更内容を詳細に調査する。
+3. ブランチの確認: git branch --show-current を実行し、現在作業しているブランチを確認する。
+4. 履歴の確認: git log --oneline -10 を実行し、直近のコミットの文脈やメッセージのスタイルを理解する。
+
+## 手順2：実行
+収集したコンテキストに基づいて、以下の行動をとってください。
+
+1. ベストプラクティス（簡潔な要約、命令形の使用など）に従ったコミットメッセージを作成する。
+2. git commit コマンドを実行してコミットを作成する。
+
+## 許可されているツール
+- git add
+- git status
+- git commit
+```
+
+
+![コミット指示例](/images/patapata-board/commit-input.png)
+*コミット指示例*
+
+使い方は `/commit` で指示します。あとは上記の指示に沿って動いてくれます。
+
+![コミット出力例](/images/patapata-board/commit-output.png)
+*コミット出力例*
+
+個人開発レベルだと十分です！
+
+### MCP
+
+MCPはContext7のみです。
+複雑な実装であったり、一部不安なところなどは `use context7` でAIエージェントが正確な情報を元に実装するようになります。（ざっくり）
+
+:::message
+Context7 は、プログラミングで使う様々なライブラリやフレームワークの最新の使い方や情報を、AI が簡単に調べられるようにするサービスです。
+例えば React や Next.js などの技術について質問すると、最新の公式ドキュメントから正確な情報を取得して回答してくれます。
+これにより、古くなった情報ではなく、今現在使える正しい方法でプログラミングの手助けができるようになります。
+:::
+
+実際のインストールは以下を参考にしてみてください！
+@[card](https://github.com/upstash/context7)
+
+
+## 3. テスト - Browser Agentによる動作確認とキャプチャ
 
 Antigravityには **Browser Agent** が搭載されており、AIが実際にChromeブラウザを操作して動作確認を行います。
 
-> **Instruction**: アニメーションが正常か確認したいので、実際にブラウザで表示してキャプチャを撮ってください。
+@[card](https://codelabs.developers.google.com/getting-started-google-antigravity?hl=ja#3)
 
-すると、Agentはバックグラウンドで：
+個人的にはここがAntigravityの一番便利だった部分でした。
 
-1. `npm run dev` でローカルサーバーを起動
-2. ブラウザでアクセス
-3. **スクリーンショットを撮影してアーティファクトとして保存**
+![ブラウザサブエージェントによるブラウザテスト](/images/patapata-board/browser.png)
+*ブラウザサブエージェントによるブラウザテスト*
 
-という手順を自動で行います。人間が手動でブラウザを開く必要すらなく、開発体験として非常に未来的でした。
+上記画像のように、基本的にAIエージェントがブラウザを操作して動作確認を行います。
+実際にスクショ撮って動作確認してくれたり、エビデンスを残してユーザーに確認依頼投げてもらう体験はAntigravityが今のところ一番良い気がします。
 
-## 脆弱性の簡易チェック
+## 4. 脆弱性の簡易チェック
 
 この記事内で紹介されているプロンプトを参考に、簡易脆弱性診断を行いました。
 https://zenn.dev/junpei_katayama/articles/self-vulnerability-check
 
-レポート出力
+こちらも不便な点は全くなく良い感じの出力になっていたためありがたく参考にさせていただきました...！
+
+## 5. デプロイ
+
+デプロイについても詰まるところは特になく、サクサク進んでくれました。
+Cloudflare側の設定についてもAntigravityに質問して進めることで効率的にデプロイ作業が可能です。
+
+プロンプト参考例
+```
+このアプリケーションをCloudflare Pagesにデプロイするにあたり、必要な手順を教えてください。
+なお、アプリケーション側で設定するべきものが不足している場合は、対応してください。
+```
 
 
-# Antigravityの良さ
+# まとめ
 
-以下の良さは、他IDEでも設定すれば同じことができると思いますが、  
+今回は、Antigravityを活用し、パタパタ時計風のテキスト生成サービスを爆速で開発してみました。
+
+パタパタ時計を見て作りたいものを決め、実際デプロイするまでは2時間くらいでした。
+実際にかかった時間の内訳は以下の通りです。
+
+```
+- PRD作成：10分
+- Antigravity設定・実開発：1時間
+- デプロイ設定：30分
+```
+
+今回紹介したAntigravityでの設定は、他IDEでも同じことができると思いますが、  
 Antigravityでは特に設定なく無料ですぐ使えるのが良かったです。
 
-## 無料で高機能（Plan + Task）
-
-これくらいの規模の簡易開発であれば十分だと思いました。
-
-## ブラウザサブエージェントが優秀
-
-https://codelabs.developers.google.com/getting-started-google-antigravity?hl=ja#3
-
-## Agentが画像生成
-
-
-## Google Workspace用のプランも今後用意される（今はまだない）
+## おまけ Google Workspace用のプランも今後用意される? （2025/12/16時点ではまだない）
 
 AntigravityのPlanを眺めていると以下の記述がありました。
 
@@ -285,5 +344,3 @@ Google Workspaceアカウント向けの有料プランは近日公開予定で�
 ```
 
 Google Workspaceアカウントと紐づくことができれば、会社標準の開発ツールになるかもしれません...！！
-
-# まとめ
