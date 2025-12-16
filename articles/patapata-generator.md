@@ -1,9 +1,10 @@
 ---
-title: "Antigravity入門、爆速無料開発 ~ パタパタ時計風テキスト生成サービス ~"
+title: "Antigravity活用した0からの開発 ~ パタパタ時計風テキスト生成サービスを添えて ~"
 emoji: "💨"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["Antigravity", "Claude", "ReactRouter", "CloudflarePages", "Wasm"]
-published: false
+topics: ["antigravity", "reactrouter", "cloudflarepages", "個人開発"]
+published: true
+publication_name: "mavericks"
 ---
 
 :::message
@@ -21,6 +22,10 @@ published: false
 
 ふと↑のようなものをWebで表現したいと思い、Antigravityを活用して開発してみました。
 
+
+**頭にあるイメージを言語化、コードに落とし込み、実際に公開するまでの一連の流れをなるべくわかりやすく解説してみました。**
+
+
 ## 話すこと
 
 - 作ったものの紹介（3割）
@@ -31,6 +36,12 @@ published: false
 以下のサイトから実際に生成される様子を確認できます！！
 
 @[card](https://patapata-board.pages.dev/)
+
+![生成例](/images/patapata-board/demo.png)
+*生成例*
+
+日本語、英語、絵文字、数字、顔文字、ヒエログリフには対応してます。
+
 
 gif動画を生成するようなものも作りたかったですが一旦保留にしてます...！
 
@@ -191,6 +202,10 @@ React Router v7 のルーティングシステムを使用。
       * `ClockWidget` の実装と配置。
       * 画面録画機能 (`getDisplayMedia`) の実装。
       * 録画時に時計やUIを隠す「Clean Mode」制御の実装。
+:::
+
+:::message
+PRD内ではDeploymentに `Vercel (Edge Functions)` が提案されていますが、本記事の実装では **Cloudflare Pages** を採用しました。AIが生成した初期案をベースにしつつ、実際の開発過程で技術選定を柔軟に変更しています。
 :::
 
 ## 2. Agentによる自律実装
