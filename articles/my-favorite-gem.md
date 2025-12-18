@@ -12,17 +12,27 @@ published: false
 
 # はじめに
 
-🚧
+今回は、私がよく使うGeminiのGemを紹介します！！
 
-弊社では、12月からGoogleWorkspaceを導入しております。経緯はこちらの記事にまとめております！
+弊社では、12月からGoogle Workspaceを導入しております。経緯はこちらの記事にまとめております！
 @[card](https://zenn.dev/mavericks/articles/google-workspace-migration-story)
+
+Gemは無料Geminiユーザーでも活用できます！！
 
 
 ## Gem...？？
 
+ざっくりとですが、出力内容をカスタマイズしたGeminiを作れるぐらいの認識で良いと思います。
+
+頻繁に繰り返すタスクの詳しいカスタム指示を書いておくことで、作業の効率化ができます。
+
+@[card](https://gemini.google/jp/overview/gems/?hl=ja)
+
 
 # Gemたちの紹介
 
+さっそくよく使うGemを紹介します。
+内容によってはWebエンジニアでなくでも活用できると思います！！
 
 :::message alert
 Gemとして紹介しますが、
@@ -123,7 +133,5 @@ Gemにやってほしいこと
 
 
 # まとめ
-
-🚧
 
 良いGemをつくったらまた記事にします！！
