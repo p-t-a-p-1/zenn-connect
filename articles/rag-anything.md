@@ -1,5 +1,5 @@
 ---
-title: "RAG-Anything："
+title: "LightRAG："
 emoji: "📝"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: []
@@ -20,6 +20,11 @@ All-in-One RAG Frameworkを実際に触ってみてどういう活用ができ�
 # 基礎となる知識
 
 ## RAGとは？
+
+
+
+
+
 
 
 # RAG-Anythingの紹介
