@@ -1,5 +1,5 @@
 ---
-title: "RAG-Anything："
+title: "LightRAG："
 emoji: "📝"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: []
@@ -22,6 +22,11 @@ All-in-One RAG Frameworkを実際に触ってみてどういう活用ができ�
 ## RAGとは？
 
 
+
+
+
+
+
 # RAG-Anythingの紹介
 
 RAG-Anythingは、テキストだけでなく画像・音声・動画など多様なデータ形式に対応したRAGフレームワークです。
@@ -38,7 +43,23 @@ RAG-Anythingは、テキストだけでなく画像・音声・動画など多�
 # やってみた結果
 
 
+
+今回は学習目的で無料でRAG構築してみたかったため、OpenRouterで無料のモデルを利用できるようにしました。
+選んだモデルは、Mistralの Devstral 2 2512 です。
+
+
+```
+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
+```
+
+## インストール
+
+
+
+
 # まとめ
+
+無料でも使えるNotebookLMはすごい！！
 
 
 
