@@ -1,9 +1,11 @@
 ---
-title: "【Gemini】マジで使うGem"
+title: "【Gemini】マジで使うGemを5つ紹介"
 emoji: "🦀"
 type: "idea" # tech: 技術記事 / idea: アイデア
-topics: ["gemini", "業務効率化", "googleworkspace"]
-published: false
+topics: ["gemini", "業務効率化", "仕事術", "googleworkspace", "webサイト"]
+published: true
+publication_name: "mavericks"
+published_at: 2025-12-21 09:05
 ---
 
 :::message
@@ -34,11 +36,14 @@ Gemは無料Geminiユーザーでも活用できます！！
 内容によってはWebエンジニアでなくでも活用できると思います！！
 
 :::message alert
-Gemとして紹介しますが、
-ClaudeやChatGPTのカスタム指示としても使えるようになっています。
+Gemとして紹介しますが、ClaudeやChatGPTのカスタム指示としても使えるようになっています。
 :::
 
-## 記事解説：個人的に難しくわからない技術記事を全体像を掴みたいとき
+## 難しくわからない技術記事の全体像を掴みたいとき
+
+よくわかっていない技術の記事や論文、外国の技術ブログなどを解説してもらうときによく使っています。
+ポイントとしては図解を含めて、わかりやすく説明してもらうことです。
+イメージしてから概要をまとめ、再度技術記事を読んで理解を深めるという流れです。
 
 ### カスタム指示
 
@@ -48,6 +53,7 @@ https://github.com/p-t-a-p-1/gem-prompts/blob/main/tech-explainer/instruction.md
 ### 出力例
 
 以下の記事を解説してもらいました...！
+（この記事がわかりにくいのではなく、私が知識不足で理解できていないためですからね...！）
 
 @[card](https://zenn.dev/ubie_dev/articles/llm-as-a-judge-rubric-evaluation)
 
@@ -89,9 +95,14 @@ LLM-as-a-Judge（AIによる自動評価）
 
 ![全体像解説](/images/my-favorite-gems/image.png)
 
+## 長いMarkdownを散文的に短い説明にするとき
 
+生成AIの出力する包括的な調査レポートは、特に指定しなければ文章量が多く、箇条書きなど構造的にしっかりしています。（しっかりしすぎて少し冗長な場合もありますが...）
+そういったときにこのGemを利用することで、短くして要約をしてもらったりしています。
 
-## Markdownの圧縮：長いMarkdownを散文的に短い説明にするとき
+カスタム指示の中にある一部は、Claudeの公式ドキュメントにあるプロンプト例を組み込んでいます。
+
+@[card](https://platform.claude.com/docs/ja/build-with-claude/prompt-engineering/claude-4-best-practices#)
 
 ### カスタム指示
 
@@ -191,7 +202,9 @@ RAG-Anythingは、**「ただ文字を検索する」時代から、「文書全
 ::::
 
 
-## Issue作成：タスク内容の整理
+## Issue作成アシスタント
+
+Geminiとの対話で技術調査を行ったあとに、実際にIssueを作成するときに役立つGemです。
 
 ### カスタム指示
 
@@ -232,12 +245,15 @@ feature/verify-rag-anything-poc
 ## ドメインストーリーテリング
 
 ドメイン知識を可視化するモデリング手法の一つであるドメインストーリーテリングをGemにしました。
-こちらのGemにつきましては、以下の記事で紹介しております。
+こちらのGemにつきましては、以下の記事で紹介しております！！
 
 @[card](https://zenn.dev/mavericks/articles/domain-storytelling-introduction#ai%E6%B4%BB%E7%94%A8%E3%81%AE%E4%BE%8B)
 
 
 ## Webサイトアニメーションの言語化
+
+最後はWebサイト制作のときに使うようなピンポイントな利用シーンですが、
+既存サイトのアニメーションの解析や、説明をGeminiに聞くことができるGemです。
 
 ### カスタム指示
 
@@ -363,35 +379,10 @@ sections.forEach((section) => {
 ::::
 
 
-# おまけ：どうやってカスタムGemを作っているのか
-
-私はカスタムGemを作るときもGeminiに聞いています。
-
-以下は実際にWebサイトアニメーションの言語化をカスタムGemにするときのやり方です。
-
-```
-カスタムGemを作成したいです。カスタム指示を考えてください。
-Gemにやってほしいこと
-* ユーザーが指定したWebサイトのアニメーションを解析する
-* リッチなアニメーションを言語化する
-* ソースコード確認できる場合はどのような実装になっているのか簡易的に解説する
-```
-
-あとは出力内容をもとにGemを作成すればokです。
-
-:::message
-実はGoogle公式でもカスタムGemについてヒントを出してくれています。
-@[card](https://support.google.com/gemini/answer/15235603?hl=ja)
-
-以下のフォーマットで作成するのが現状良いそうです。
-
-- あなたの役割と目標
-- 具体的な作業指示
-- 出力フォーマット
-- 制約事項
-:::
-
-
 # まとめ
 
-良いGemをつくったらまた記事にします！！
+私が業務でも、日常生活でもよく使っているGemを5つ紹介しました。
+今回紹介したように、Gemはエンジニアリングの領域だけでなく、日々のちょっとした作業を強力にサポートしてくれます。
+自分だけのアシスタントを量産できるのがGemの最大のメリットだと思います。
+
+無料版でも利用できるので、ぜひみなさんも自分好みのGemを作って、業務効率化や学習に役立ててみてください！
