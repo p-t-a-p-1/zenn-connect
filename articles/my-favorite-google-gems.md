@@ -1,8 +1,8 @@
 ---
-title: "【Gemini】マジで使うGemを5つ紹介"
+title: "【Google Gemini】マジで使うGemを5つ紹介"
 emoji: "🦀"
 type: "idea" # tech: 技術記事 / idea: アイデア
-topics: ["gemini", "業務効率化", "仕事術", "googleworkspace", "webサイト"]
+topics: ["gemini", "業務効率化", "仕事術", "googleworkspace", "gem"]
 published: true
 publication_name: "mavericks"
 published_at: 2025-12-21 09:05
@@ -20,6 +20,11 @@ published_at: 2025-12-21 09:05
 @[card](https://zenn.dev/mavericks/articles/google-workspace-migration-story)
 
 Gemは無料Geminiユーザーでも活用できます！！
+
+## この記事で伝えたいこと↓↓↓
+
+![全体像解説](/images/my-favorite-google-gems/overview.jpg)
+*全体像解説*
 
 ## Gem...？？
 
@@ -93,7 +98,7 @@ LLM-as-a-Judge（AIによる自動評価）
 
 生成された画像はこちら
 
-![全体像解説](/images/my-favorite-gems/image.png)
+![全体像解説](/images/my-favorite-google-gems/image.png)
 
 ## 長いMarkdownを散文的に短い説明にするとき
 
