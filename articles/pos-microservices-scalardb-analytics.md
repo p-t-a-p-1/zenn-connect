@@ -1,6 +1,6 @@
 ---
 title: "【連載】（第3回）POSとマイクロサービス：ScalarDB Analyticsで実現する異種DB間の横断データ分析"
-emoji: "📊"
+emoji: "🏬"
 type: "tech"
 topics: ["pos", "マイクロサービス", "scalardb", "データ分析", "sql"]
 published: false
@@ -28,7 +28,7 @@ publication_name: "scalar_sol_blog"
 ### N+1クエリとは
 
 データベースからデータを取得する際、1回のクエリでN件のデータを一覧取得した後、そのN件それぞれの関連データを取得するためにN回の追加クエリが実行されてしまう問題です。
-結果として1 + N回のクエリが発行され、通信オーバーヘッドによって著しいパフォーマンス低下を引き起こします。
+結果としてN + 1回のクエリが発行され、通信オーバーヘッドによって著しいパフォーマンス低下を引き起こします。
 
 ### インメモリ結合とは
 
@@ -48,7 +48,7 @@ ClaudeやCursorなどのAIエージェントが、外部のデータソースや
 
 POSシステムでは、商品マスタ（PostgreSQL）、在庫データ（Cassandra）、注文履歴（DynamoDB）のように、各マイクロサービスがそれぞれのドメインに最適なデータベースを選択しています。
 
-それぞれのサービスが独立して動くのは素晴らしいのですが、運用フェーズで問題になるのが分析です。
+それぞれのサービスが独立して動いてはいますが、運用フェーズで問題になるのが分析です。
 例えば、店舗運営において非常に重要な欠品リスクの分析（どの商品がいつ売り切れそうか）を行いたい場合、これら3つの異なるDBすべてのデータが必要になります。
 
 従来のアプローチでは、アプリケーション側で以下のような実装をせざるを得ませんでした。
@@ -148,9 +148,28 @@ ScalarDB AnalyticsをこのMCPサーバーとしてAIに繋ぐと、これまで
    - MCP経由でScalarDB AnalyticsにSQLを実行させる
    - 取得した結果を自然言語で分析し、人間に回答する
 
-<!-- 画像メモ: Claude DesktopやCursorからMCP経由でScalarDB AnalyticsにSQLを投げ、在庫リスクの回答を得ているデモ画像 -->
+## 実際のデモ
 
-単なる分析機能の迅速な開発にとどまらず、AIエージェントに直接業務分析を行わせる（AI駆動運用）というフローが、ScalarDB AnalyticsとMCPの組み合わせによって圧倒的な手軽さで実現できるようになります！！
+少し脱線しますが、今回はMCPサーバーとの連携にKeycloakを利用して、OAuth 2.1による自動認証を行いました。
+Claude Code上で、`/mcp`と入力し、MCPの設定で、`Authentication`を選択すると、ブラウザが自動起動し Keycloak ログイン画面が表示されます。
+
+![MCPサーバーの認証1](/images/pos-microservices-scalardb-analytics/demo_sa_mcp_auth_1.png)
+
+![MCPサーバーの認証2](/images/pos-microservices-scalardb-analytics/demo_sa_mcp_auth_2.png)
+
+認証後は Bearer トークンが自動付与されツールが即座に使用可能になります。
+
+実際には、以下のようなプロンプトを入力し、AIに分析タスクを依頼します。
+
+![利用例1](/images/pos-microservices-scalardb-analytics/demo_sa_mcp_usage_1.png)
+
+AIはMCP経由でScalarDB Analyticsに横断SQLを投げ、結果を取得。そして、自然言語で回答してくれます。
+
+![利用例2](/images/pos-microservices-scalardb-analytics/demo_sa_mcp_usage_2.png)
+
+時間帯別の売上分析はこのように自然言語ベースで依頼して、集計結果をグラフで表示させることも可能です。
+
+単なる分析機能にとどまらず、AIエージェントに直接業務分析を行わせるフローが、ScalarDB AnalyticsとMCPの組み合わせによって手軽に実現できるようになります！！
 
 # まとめ
 

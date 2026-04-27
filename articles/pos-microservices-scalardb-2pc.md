@@ -1,6 +1,6 @@
 ---
 title: "【連載】（第2回）POSとマイクロサービス：ScalarDBで実現する異種DB間の2PC実装"
-emoji: "🍣"
+emoji: "🏬"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["pos", "マイクロサービス", "scalardb", "2pc", "分散トランザクション"]
 published: false

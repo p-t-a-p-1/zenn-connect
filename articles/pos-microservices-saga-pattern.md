@@ -1,6 +1,6 @@
 ---
 title: "【連載】（第1回）POSとマイクロサービス：POSシステムのマイクロサービス化とSagaパターンの辛さ"
-emoji: "🍣"
+emoji: "🏬"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["pos", "マイクロサービス", "saga", "scalardb", "設計"]
 published: false
