@@ -3,8 +3,9 @@ title: "【連載】（第1回）POSとマイクロサービス：POSシステ�
 emoji: "🏬"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["pos", "マイクロサービス", "saga", "scalardb", "設計"]
-published: false
+published: true
 publication_name: "scalar_sol_blog"
+published_at: 2026-04-28 17:00
 ---
 
 # はじめに
