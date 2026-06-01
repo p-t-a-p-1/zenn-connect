@@ -1,0 +1,30 @@
+title: "Claude Codeで進めるAI駆動POSリファクタリング：Nexus ArchitectとScalarDB"
+summary: "Claude Code上でNexus Architectを活用し、モノリスPOSシステムの分析・設計可視化からリファクタリング方針の具体化までをAI駆動で進める実践ガイド。さらにScalarDBによる分散トランザクション適用を通じて、レガシーシステムを段階的にモダナイズする手法を解説します。"
+topics: ["architecture", "scalardb", "refactoring"]
+published: false
+price: 0
+toc_depth: 2
+chapters:
+  - 01-introduction
+  - 02-what-is-nexus-architect
+  - 03-legacy-pos-features-and-structure
+  - 04-setup-nexus-architect-in-claude
+  - 05-run-investigation-and-analysis
+  - 06-run-evaluation-and-integration
+  - 07-generate-redesign-and-scalardb-design
+  - 08-design-review-and-rereview
+  - 09-understanding-current-state-reports
+  - 10-understanding-domain-analysis-reports
+  - 11-understanding-evaluation-reports
+  - 12-understanding-design-report-overview
+  - 13-context-redesign-and-target-architecture
+  - 14-scalardb-schema-and-outbox
+  - 15-transaction-saga-and-read-model
+  - 16-api-gateway-and-operations-design
+  - 17-design-review-results-and-lessons
+  - 18-compound-engineering-basics-and-inputs
+  - 19-refactoring-plan-and-implemented-structure
+  - 20-scalardb-infra-and-frontend-migration
+  - 21-implementation-learning-and-architecture-delta
+  - 22-measuring-refactoring-effects
+  - 23-conclusion
