@@ -1,5 +1,5 @@
 ---
-title: "【Nexus Architect本レビュー用】【連載】（第22回）前後比較で見るリファクタリングの効果測定"
+title: "【Nexus Architect本レビュー用】（第22回）前後比較で見るリファクタリングの効果測定"
 emoji: "📘"
 type: "tech"
 topics: ["architecture","scalardb","refactoring"]

@@ -1,5 +1,5 @@
 ---
-title: "【Nexus Architect本レビュー用】【連載】（第11回）評価・採点レポートを読み解く"
+title: "【Nexus Architect本レビュー用】（第11回）評価・採点レポートを読み解く"
 emoji: "📘"
 type: "tech"
 topics: ["architecture","scalardb","refactoring"]

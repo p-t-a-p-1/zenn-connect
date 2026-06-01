@@ -1,5 +1,5 @@
 ---
-title: "【Nexus Architect本レビュー用】【連載】（第3回）解析対象とするレガシーPOSシステムの機能と現状の構造"
+title: "【Nexus Architect本レビュー用】（第3回）解析対象とするレガシーPOSシステムの機能と現状の構造"
 emoji: "📘"
 type: "tech"
 topics: ["architecture","scalardb","refactoring"]

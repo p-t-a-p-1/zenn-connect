@@ -1,5 +1,5 @@
 ---
-title: "【Nexus Architect本レビュー用】【連載】（第15回）トランザクション・Saga・Read Model設計を読み解く"
+title: "【Nexus Architect本レビュー用】（第15回）トランザクション・Saga・Read Model設計を読み解く"
 emoji: "📘"
 type: "tech"
 topics: ["architecture","scalardb","refactoring"]

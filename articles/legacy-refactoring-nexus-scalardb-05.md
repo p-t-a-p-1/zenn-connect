@@ -1,5 +1,5 @@
 ---
-title: "【Nexus Architect本レビュー用】【連載】（第5回）Nexus Architectで調査と分析を実行する"
+title: "【Nexus Architect本レビュー用】（第5回）Nexus Architectで調査と分析を実行する"
 emoji: "📘"
 type: "tech"
 topics: ["architecture","scalardb","refactoring"]

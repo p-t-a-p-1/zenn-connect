@@ -1,5 +1,5 @@
 ---
-title: "【Nexus Architect本レビュー用】【連載】（第18回）Compound Engineeringの基本と実装入力を理解する"
+title: "【Nexus Architect本レビュー用】（第18回）Compound Engineeringの基本と実装入力を理解する"
 emoji: "📘"
 type: "tech"
 topics: ["architecture","scalardb","refactoring"]

@@ -1,5 +1,5 @@
 ---
-title: "【Nexus Architect本レビュー用】【連載】（第4回）Claude CodeにNexus Architectを導入する"
+title: "【Nexus Architect本レビュー用】（第4回）Claude CodeにNexus Architectを導入する"
 emoji: "📘"
 type: "tech"
 topics: ["architecture","scalardb","refactoring"]

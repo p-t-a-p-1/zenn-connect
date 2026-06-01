@@ -1,5 +1,5 @@
 ---
-title: "【Nexus Architect本レビュー用】【連載】（第7回）再設計とScalarDB設計を生成する"
+title: "【Nexus Architect本レビュー用】（第7回）再設計とScalarDB設計を生成する"
 emoji: "📘"
 type: "tech"
 topics: ["architecture","scalardb","refactoring"]

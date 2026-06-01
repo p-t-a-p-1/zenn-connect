@@ -1,5 +1,5 @@
 ---
-title: "【Nexus Architect本レビュー用】【連載】（第1回）はじめに"
+title: "【Nexus Architect本レビュー用】（第1回）はじめに"
 emoji: "📘"
 type: "tech"
 topics: ["architecture","scalardb","refactoring"]

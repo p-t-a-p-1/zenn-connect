@@ -1,5 +1,5 @@
 ---
-title: "【Nexus Architect本レビュー用】【連載】（第19回）リファクタリング計画と実装構成を理解する"
+title: "【Nexus Architect本レビュー用】（第19回）リファクタリング計画と実装構成を理解する"
 emoji: "📘"
 type: "tech"
 topics: ["architecture","scalardb","refactoring"]

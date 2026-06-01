@@ -1,5 +1,5 @@
 ---
-title: "【Nexus Architect本レビュー用】【連載】（第8回）設計レビューと再レビューで設計を固める"
+title: "【Nexus Architect本レビュー用】（第8回）設計レビューと再レビューで設計を固める"
 emoji: "📘"
 type: "tech"
 topics: ["architecture","scalardb","refactoring"]

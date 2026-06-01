@@ -1,5 +1,5 @@
 ---
-title: "【Nexus Architect本レビュー用】【連載】（第21回）実装で得た学習とアーキテクチャの変化を理解する"
+title: "【Nexus Architect本レビュー用】（第21回）実装で得た学習とアーキテクチャの変化を理解する"
 emoji: "📘"
 type: "tech"
 topics: ["architecture","scalardb","refactoring"]

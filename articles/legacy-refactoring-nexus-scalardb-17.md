@@ -1,5 +1,5 @@
 ---
-title: "【Nexus Architect本レビュー用】【連載】（第17回）設計レビュー結果と学びを読み解く"
+title: "【Nexus Architect本レビュー用】（第17回）設計レビュー結果と学びを読み解く"
 emoji: "📘"
 type: "tech"
 topics: ["architecture","scalardb","refactoring"]

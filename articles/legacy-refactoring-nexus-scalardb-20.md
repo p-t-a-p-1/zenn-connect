@@ -1,5 +1,5 @@
 ---
-title: "【Nexus Architect本レビュー用】【連載】（第20回）ScalarDB・インフラ・フロントエンド移行を理解する"
+title: "【Nexus Architect本レビュー用】（第20回）ScalarDB・インフラ・フロントエンド移行を理解する"
 emoji: "📘"
 type: "tech"
 topics: ["architecture","scalardb","refactoring"]

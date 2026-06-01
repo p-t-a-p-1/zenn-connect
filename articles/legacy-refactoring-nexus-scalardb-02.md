@@ -1,5 +1,5 @@
 ---
-title: "【Nexus Architect本レビュー用】【連載】（第2回）アーキテクチャ設計支援ツールキット（Nexus Architect） とは？？"
+title: "【Nexus Architect本レビュー用】（第2回）アーキテクチャ設計支援ツールキット（Nexus Architect）とは？"
 emoji: "📘"
 type: "tech"
 topics: ["architecture","scalardb","refactoring"]

@@ -1,5 +1,5 @@
 ---
-title: "【Nexus Architect本レビュー用】【連載】（第12回）リファクタリング設計レポートの全体像を読み解く"
+title: "【Nexus Architect本レビュー用】（第12回）リファクタリング設計レポートの全体像を読み解く"
 emoji: "📘"
 type: "tech"
 topics: ["architecture","scalardb","refactoring"]

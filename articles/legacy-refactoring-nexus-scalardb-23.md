@@ -1,5 +1,5 @@
 ---
-title: "【Nexus Architect本レビュー用】【連載】（第23回）おわりに"
+title: "【Nexus Architect本レビュー用】（第23回）おわりに"
 emoji: "📘"
 type: "tech"
 topics: ["architecture","scalardb","refactoring"]

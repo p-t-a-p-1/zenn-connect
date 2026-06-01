@@ -1,5 +1,5 @@
 ---
-title: "【Nexus Architect本レビュー用】【連載】（第6回）MMI・DDD評価と統合評価を実行する"
+title: "【Nexus Architect本レビュー用】（第6回）MMI・DDD評価と統合評価を実行する"
 emoji: "📘"
 type: "tech"
 topics: ["architecture","scalardb","refactoring"]
