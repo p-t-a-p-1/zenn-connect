@@ -383,6 +383,8 @@ ScalarDBのnamespace・テーブル・キー設計と、Outbox/Processed Event�
 
 **読み取りポイント**
 
+※ 以降の各レポート要約についても、共通して以下の観点で読み解きます。
+
 - レポートの詳細項目を一つずつ追うより、後続の本文で扱う設計判断とのつながりを重視します。
 - 責務集中、境界の崩れ、複数DB更新、副作用処理、運用リスクがどのように設計課題へ変換されるかを確認します。
 ::::
@@ -405,9 +407,7 @@ scalar.db.multi_storage.storages.mysql.storage: jdbc
 scalar.db.multi_storage.storages.mysql.contact_points: jdbc:mysql://mysql:3306/pos_mysql
 
 scalar.db.storage: multi-storage
-scalar.db.multi_storage.namespace_mapping: \
-  catalog:postgres,loyalty:postgres,receipt:postgres,identity:postgres,audit:postgres,\
-  inventory:mysql,order:mysql,payment:mysql,return:mysql
+scalar.db.multi_storage.namespace_mapping: catalog:postgres,loyalty:postgres,receipt:postgres,identity:postgres,audit:postgres,inventory:mysql,order:mysql,payment:mysql,return:mysql
 ```
 
 Namespaceを境界コンテキスト単位に分け、それぞれをPostgreSQLまたはMySQLへルーティングします。
@@ -533,7 +533,7 @@ ScalarDB内で完結する更新であれば、`tx.abort()` によって原子�
 
 一方で、外部決済SaaSのような外部API呼び出しは、ScalarDBのrollbackでは取り消せません。
 
-この境界をレポートでは **Pure Tx領域** と **Side-Effect Boundary（副作用境界）** として分けています。
+この境界をレポートでは **Pure Tx領域** と **副作用境界（Side-Effect Boundary）** として分けています。
 
 | 領域 | 性質 | 補償戦略 |
 | :--- | :--- | :--- |
@@ -583,7 +583,7 @@ sequenceDiagram
     participant SDB as ScalarDB Tx
     participant OB as Outbox
     participant Worker as Payment ACL Worker
-    participant Ext as外部決済SaaS
+    participant Ext as 外部決済SaaS
     participant CH as Compensation Handler
 
     Web->>CO: checkout
@@ -756,10 +756,6 @@ API Gateway/BFFのルーティング・認証・障害制御と、HA/DR・可観
 | `*** /api/admin/orders/**` | Order Service | JWT (MANAGER+) |
 | `*** /api/admin/inventory/**` | Inventory Service | JWT (MANAGER+) |
 
-**読み取りポイント**
-
-- レポートの詳細項目を一つずつ追うより、後続の本文で扱う設計判断とのつながりを重視します。
-- 責務集中、境界の崩れ、複数DB更新、副作用処理、運用リスクがどのように設計課題へ変換されるかを確認します。
 ::::
 
 
@@ -814,10 +810,6 @@ v3設計では、さらに本番運用に必要な設計が追加されていま
 | Bulkhead | サービス／DB／Cluster 間でリソースを隔離し、障害伝播を抑制 |
 | Tested Recovery | リストアできる前提を四半期テストで実証 |
 
-**読み取りポイント**
-
-- レポートの詳細項目を一つずつ追うより、後続の本文で扱う設計判断とのつながりを重視します。
-- 責務集中、境界の崩れ、複数DB更新、副作用処理、運用リスクがどのように設計課題へ変換されるかを確認します。
 ::::
 
 
@@ -903,10 +895,6 @@ v3設計では、さらに本番運用に必要な設計が追加されていま
 | Business（ビジネス） | PASS_WITH_RECOMMENDATIONS | 3.0 | 15% |
 | **総合スコア** | | **2.625 / 5.0** | |
 
-**読み取りポイント**
-
-- レポートの詳細項目を一つずつ追うより、後続の本文で扱う設計判断とのつながりを重視します。
-- 責務集中、境界の崩れ、複数DB更新、副作用処理、運用リスクがどのように設計課題へ変換されるかを確認します。
 ::::
 
 
@@ -932,7 +920,7 @@ v3設計では、さらに本番運用に必要な設計が追加されていま
 
 このFAIL判定は、かなり価値があります。
 
-AIが生成した設計書は、一見するとそれらしい構成図やサービス分割を含んでいるため、そのまま進めたくなります。しかしレビューにかけると、運用できない配信保証がない外部副作用を戻せない採用技術の制約に反しているという、実装前に潰すべきリスクが見つかっています。
+AIが生成した設計書は、一見するとそれらしい構成図やサービス分割を含んでいるため、そのまま進めたくなります。しかしレビューにかけると、運用できない / 配信保証がない / 外部副作用を戻せない / 採用技術の制約に反している という、実装前に潰すべきリスクが見つかっています。
 
 設計レビューがなければ、これらは実装フェーズや本番障害で発覚していた可能性があります。
 
@@ -969,10 +957,6 @@ AIが生成した設計書は、一見するとそれらしい構成図やサー
 | Business    | 15% | 3.0 | 3.0 | 0   | PASS_WITH_RECOMMENDATIONS |
 | **加重平均**| 100% | **2.625** | **3.65** | **+1.025** | **CONDITIONAL_PASS** |
 
-**読み取りポイント**
-
-- レポートの詳細項目を一つずつ追うより、後続の本文で扱う設計判断とのつながりを重視します。
-- 責務集中、境界の崩れ、複数DB更新、副作用処理、運用リスクがどのように設計課題へ変換されるかを確認します。
 ::::
 
 
@@ -980,7 +964,7 @@ AIが生成した設計書は、一見するとそれらしい構成図やサー
 | :--- | :--- |
 | SYN-001 | `disaster-recovery.md` に3ノードMulti-AZ、Patroni、RTO/RPOを追加 |
 | SYN-002 | `scalardb-transaction.md` と `scalardb-schema.md` でOutboxをPhase2から必須化 |
-| SYN-003 | `saga-design.md` でPure Txと副作用境界を分離し、ハイブリッドSagaを追加 |
+| SYN-003 | `saga-design.md` でPure Tx領域と副作用境界を分離し、ハイブリッドSagaを追加 |
 | SYN-004 | `read-model-design.md` でStandard + 独立PostgreSQL Read ModelのCQRS設計へ変更 |
 
 スコアも、2.625から3.65へ改善しています。
@@ -1033,10 +1017,6 @@ AIが生成した設計書は、一見するとそれらしい構成図やサー
 | Business | 15% | 3.0 | 3.0 | **4.5** | +1.5 | PASS_WITH_RECOMMENDATIONS | v3 (SYN-017 解消反映) |
 | **加重集約** | 100% | **2.625** | **3.65** | **4.275** | **+1.65** | **CONDITIONAL_PASS** | — |
 
-**読み取りポイント**
-
-- レポートの詳細項目を一つずつ追うより、後続の本文で扱う設計判断とのつながりを重視します。
-- 責務集中、境界の崩れ、複数DB更新、副作用処理、運用リスクがどのように設計課題へ変換されるかを確認します。
 ::::
 
 
@@ -1114,7 +1094,7 @@ ScalarDBを導入すると、MySQLとPostgreSQLを跨いだ業務更新をACID�
 
 ここには依然としてSaga的な状態管理と補償設計が必要です。
 
-この違いを、レポートではPure Tx領域とSide-Effect Boundaryとして整理していました。
+この違いを、レポートではPure Tx領域と副作用境界として整理していました。
 
 この整理がないと、分散トランザクション基盤を入れたから全部解決という危険な誤解につながります。
 
