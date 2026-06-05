@@ -15,7 +15,8 @@ publication_name: "scalar_sol_blog"
 
 実装編では、Nexus Architectの設計書を入力として、Compound Engineeringを使いながら`pos-microservices`を実装していった流れを見ました。
 
-このページで見ていく改善効果を先にまとめると、以下のようになります。
+このページで見ていく改善効果について、設計・評価ツールである「Nexus Architect」によって算出された指標の数値を先にまとめると、以下のようになります。
+
 
 | 指標 | 評価 |
 |---|---:|
