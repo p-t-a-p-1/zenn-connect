@@ -3,9 +3,27 @@ title: "【連載】（第2回）Nexus Architect × ScalarDB：分析から設�
 emoji: "🧭"
 type: "tech"
 topics: ["scalardb","architecture","ddd","claudecode","設計レビュー"]
-published: false
+published: true
 publication_name: "scalar_sol_blog"
+published_at: 2026-06-09 17:30
 ---
+
+---
+前回の記事はこちら
+
+@[card](https://zenn.dev/scalar_sol_blog/articles/nexus-architect-scalardb-01)
+---
+
+:::message
+本記事は、Nexus ArchitectとScalarDBに関する連載記事の第2回です。
+連載の全体構成については、第1回の「この連載の構成」をご参照ください。
+
+@[card](https://zenn.dev/scalar_sol_blog/articles/nexus-architect-scalardb-01#%E3%81%93%E3%81%AE%E9%80%A3%E8%BC%89%E3%81%AE%E6%A7%8B%E6%88%90)
+
+前回は、モダナイゼーションに向けた連載全体の流れと、あえて意図的な負債を組み込んだ題材のPOSシステムについて解説しました。
+第2回となる本記事では、実際にClaude Codeに設計支援ツールであるNexus Architectを導入し、レガシーシステムの調査・分析からターゲット構成の再設計、初期レビューでレポートを出力するまでの自動パイプラインのフローを実行していきます。
+:::
+
 ## Claude CodeにNexus Architectを導入する
 
 :::message

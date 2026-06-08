@@ -3,9 +3,27 @@ title: "【連載】（第4回）Nexus Architect × ScalarDB：ScalarDB設計と
 emoji: "🧭"
 type: "tech"
 topics: ["scalardb","architecture","outbox","saga","cqrs"]
-published: false
+published: true
 publication_name: "scalar_sol_blog"
+published_at: 2026-06-11 17:30
 ---
+
+---
+前回の記事はこちら
+
+@[card](https://zenn.dev/scalar_sol_blog/articles/nexus-architect-scalardb-03)
+---
+
+:::message
+本記事は、Nexus ArchitectとScalarDBに関する連載記事の第4回です。
+連載の全体構成については、第1回の「この連載の構成」をご参照ください。
+
+@[card](https://zenn.dev/scalar_sol_blog/articles/nexus-architect-scalardb-01#%E3%81%93%E3%81%AE%E9%80%A3%E8%BC%89%E3%81%AE%E6%A7%8B%E6%88%90)
+
+前回は、現状診断やドメイン分析、MMI・DDD評価レポートを読み解き、巨大クラスや手書きSagaなど具体的な課題と段階的な移行計画を確認しました。
+第4回となる本記事では、13のマイクロサービス構成へのターゲットアーキテクチャ再設計、ScalarDBスキーマ、Outboxパターン、外部副作用を扱うハイブリッドSagaやCQRSリードモデルなどの詳細設計と、レビューを通じて設計品質を合格（PASS）に引き上げていく軌跡を読み解きます。
+:::
+
 ## リファクタリング設計レポートの全体像を読み解く
 
 :::message

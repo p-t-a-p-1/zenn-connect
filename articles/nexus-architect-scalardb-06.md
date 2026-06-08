@@ -3,9 +3,27 @@ title: "【連載】（第6回）Nexus Architect × ScalarDB：効果測定と�
 emoji: "🧭"
 type: "tech"
 topics: ["scalardb","refactoring","architecture","マイクロサービス","モダナイゼーション"]
-published: false
+published: true
 publication_name: "scalar_sol_blog"
+published_at: 2026-06-15 17:30
 ---
+
+---
+前回の記事はこちら
+
+@[card](https://zenn.dev/scalar_sol_blog/articles/nexus-architect-scalardb-05)
+---
+
+:::message
+本記事は、Nexus ArchitectとScalarDBに関する連載記事の第6回です。
+連載の全体構成については、第1回の「この連載の構成」をご参照ください。
+
+@[card](https://zenn.dev/scalar_sol_blog/articles/nexus-architect-scalardb-01#%E3%81%93%E3%81%AE%E9%80%A3%E8%BC%89%E3%81%AE%E6%A7%8B%E6%88%90)
+
+前回は、詳細な設計プランをもとにCompound Engineeringを活用し、共通ライブラリから13のマイクロサービス、フロントエンドやCI/CD・インフラ環境までを一気に構築していく実装フェーズの進め方を確認しました。
+最終回となる第6回では、リファクタリング前後の構造変化や評価指標スコアの推移による効果測定、および各ツールの役割を振り返りながら、実務の現場で小さく安全にリファクタリングを始めるための要点をまとめます。
+:::
+
 ## 前後比較で見るリファクタリングの効果測定
 
 :::message

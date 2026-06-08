@@ -3,9 +3,27 @@ title: "【連載】（第3回）Nexus Architect × ScalarDB：現状・ドメ�
 emoji: "🧭"
 type: "tech"
 topics: ["ddd","マイクロサービス","refactoring","architecture","技術的負債"]
-published: false
+published: true
 publication_name: "scalar_sol_blog"
+published_at: 2026-06-10 17:30
 ---
+
+---
+前回の記事はこちら
+
+@[card](https://zenn.dev/scalar_sol_blog/articles/nexus-architect-scalardb-02)
+---
+
+:::message
+本記事は、Nexus ArchitectとScalarDBに関する連載記事の第3回です。
+連載の全体構成については、第1回の「この連載の構成」をご参照ください。
+
+@[card](https://zenn.dev/scalar_sol_blog/articles/nexus-architect-scalardb-01#%E3%81%93%E3%81%AE%E9%80%A3%E8%BC%89%E3%81%AE%E6%A7%8B%E6%88%90)
+
+前回は、Nexus Architectを使ってレガシーシステムの調査・分析から再設計、初期レビューを実行する自動設計パイプラインの流れを確認しました。
+第3回となる本記事では、その結果として生成された現状把握・ドメイン分析・評価スコアの各レポートを詳細に読み解き、システムが抱える構造的な課題や移行ロードマップを深掘りしていきます。
+:::
+
 ## 現状把握レポートを読み解く
 
 :::message

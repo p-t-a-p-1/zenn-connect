@@ -3,8 +3,9 @@ title: "【連載】（第1回）Nexus Architect × ScalarDB：AI駆動レガシ
 emoji: "🧭"
 type: "tech"
 topics: ["scalardb","refactoring","architecture","ai","モダナイゼーション"]
-published: false
+published: true
 publication_name: "scalar_sol_blog"
+published_at: 2026-06-08 17:30
 ---
 ## はじめに
 
@@ -39,11 +40,11 @@ publication_name: "scalar_sol_blog"
 | 回 | 記事 | 主な内容 |
 | :--- | :--- | :--- |
 | 第1回 | [AI駆動POSリファクタリングの全体像](https://zenn.dev/scalar_sol_blog/articles/nexus-architect-scalardb-01) | Nexus Architect、ScalarDB、題材POSシステム、連載全体の流れ |
-| 第2回 | [分析から設計レビューまで実行する](https://zenn.dev/scalar_sol_blog/articles/nexus-architect-scalardb-02) | Claude Codeへの導入、調査、分析、評価、再設計、設計レビュー |
-| 第3回 | [現状・ドメイン・評価レポートを読む](https://zenn.dev/scalar_sol_blog/articles/nexus-architect-scalardb-03) | 現状把握、ドメイン分析、MMI・DDD評価、統合改善計画 |
-| 第4回 | [ScalarDB設計とレビュー結果を読み解く](https://zenn.dev/scalar_sol_blog/articles/nexus-architect-scalardb-04) | 境界コンテキスト、ScalarDBスキーマ、Outbox、Saga、Read Model、運用設計、レビュー結果 |
-| 第5回 | [Compound Engineeringで実装へつなげる](https://zenn.dev/scalar_sol_blog/articles/nexus-architect-scalardb-05) | 実装入力、リファクタリング計画、13サービス構成、インフラ、フロントエンド移行、実装中の学習 |
-| 第6回 | [効果測定と実務への活かし方](https://zenn.dev/scalar_sol_blog/articles/nexus-architect-scalardb-06) | リファクタリング前後比較、効果測定、Nexus ArchitectとScalarDBの役割、実務での始め方 |
+| 第2回 | 分析から設計レビューまで実行する | Claude Codeへの導入、調査、分析、評価、再設計、設計レビュー |
+| 第3回 | 現状・ドメイン・評価レポートを読む | 現状把握、ドメイン分析、MMI・DDD評価、統合改善計画 |
+| 第4回 | ScalarDB設計とレビュー結果を読み解く | 境界コンテキスト、ScalarDBスキーマ、Outbox、Saga、Read Model、運用設計、レビュー結果 |
+| 第5回 | Compound Engineeringで実装へつなげる | 実装入力、リファクタリング計画、13サービス構成、インフラ、フロントエンド移行、実装中の学習 |
+| 第6回 | 効果測定と実務への活かし方 | リファクタリング前後比較、効果測定、Nexus ArchitectとScalarDBの役割、実務での始め方 |
 
 ---
 

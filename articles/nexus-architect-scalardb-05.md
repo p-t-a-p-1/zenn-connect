@@ -3,9 +3,27 @@ title: "【連載】（第5回）Nexus Architect × ScalarDB：Compound Engineer
 emoji: "🧭"
 type: "tech"
 topics: ["scalardb","refactoring","マイクロサービス","kubernetes","claudecode"]
-published: false
+published: true
 publication_name: "scalar_sol_blog"
+published_at: 2026-06-12 17:30
 ---
+
+---
+前回の記事はこちら
+
+@[card](https://zenn.dev/scalar_sol_blog/articles/nexus-architect-scalardb-04)
+---
+
+:::message
+本記事は、Nexus ArchitectとScalarDBに関する連載記事の第5回です。
+連載の全体構成については、第1回の「この連載の構成」をご参照ください。
+
+@[card](https://zenn.dev/scalar_sol_blog/articles/nexus-architect-scalardb-01#%E3%81%93%E3%81%AE%E9%80%A3%E8%BC%89%E3%81%AE%E6%A7%8B%E6%88%90)
+
+前回は、13のサービス構成やデータ一貫性を守るためのScalarDBスキーマ・Saga設計、CQRSリードモデルの設計と、レビューで合格を得るまでのプロセスを読み解きました。
+第5回となる本記事では、この詳細設計をもとに、AI開発ワークフローであるCompound Engineeringを活用して、共通ライブラリの実装から各サービス、CI/CD・インフラ設定、さらにはフロントエンド移行までを段階的な実装プランに沿って組み立てていくプロセスを追っていきます。
+:::
+
 ## Compound Engineeringの基本と実装入力を理解する
 
 :::message
