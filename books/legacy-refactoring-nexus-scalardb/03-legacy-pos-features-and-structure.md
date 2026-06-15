@@ -114,7 +114,7 @@ graph TD
 
 ## ディレクトリ構造と主なコンポーネントについて
 
-問題となっている個所を中心に、ディレクトリ構造をまとめました。
+問題となっている箇所を中心に、ディレクトリ構造をまとめました。
 
 ```
 legacy-pos-monolith/
@@ -156,10 +156,10 @@ legacy-pos-monolith/
 
 そのため、以下のような重大なパフォーマンス上の問題（技術的負債）が意図的に組み込まれています。
 
-##### 1. 注文明細取得における N+1 問題
+##### 1. 注文明細取得におけるN+1問題
 注文一覧とそれぞれの明細を含む詳細情報を取得する際、全注文を取得した後にループ内で都度明細テーブルへクエリを発行しています。
 
-これにより、注文数が $N$ 件ある場合、$1 + N$ 回のデータベース問い合わせが発生し、大量データ処理時にシステムパフォーマンスが著しく低下します。
+これにより、注文数が`N`件ある場合、`N+1`回のデータベース問い合わせが発生し、大量データ処理時にシステムパフォーマンスが著しく低下します。
 
 ```java
 // OrderService.java より抜粋
@@ -195,6 +195,7 @@ public List<Map<String, Object>> getHourlySales(LocalDate date) {
     // ！！！ 各時間帯について個別にクエリを発行 — 24回のDBラウンドトリップ ！！！
     for (int hour = 0; hour < 24; hour++) {
         // Service 内で直接 JdbcTemplate を使用してSQLを実行
+        // ※ DATE() や HOUR() は MySQL 依存の構文です（PostgreSQL 等では別構文が必要になります）
         String sql = "SELECT COUNT(*) as cnt, COALESCE(SUM(total_yen), 0) as total " +
                 "FROM orders WHERE DATE(ordered_at) = ? AND HOUR(ordered_at) = ? AND status = 'COMPLETED'";
 
@@ -306,7 +307,7 @@ public CheckoutResult execute(CheckoutRequest request) {
                 log.error("補償失敗 step4", ce);  // SMELL: swallow compensation exception
             }
         }
-        // ... (以下、MySQL側の決済・在庫・注文ステータスの補償処理が続くが、同様にすべて個別 try-catch で例外が握り潰される)
+        // 以下、MySQL側の決済・在庫・注文ステータスの補償処理が続くが、同様にすべて個別 try-catch で例外が握り潰される
 ```
 
 もし補償処理の途中でデータベース接続エラーなどの問題が発生した場合、例外がログに出力されるだけで、処理は強引に次のステップへと進んでしまいます。

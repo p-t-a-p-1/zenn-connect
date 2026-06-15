@@ -49,7 +49,7 @@ ScalarDB内で完結する更新であれば、`tx.abort()` によって原子�
 
 一方で、外部決済SaaSのような外部API呼び出しは、ScalarDBのrollbackでは取り消せません。
 
-この境界をレポートでは **Pure Tx領域** と **Side-Effect Boundary（副作用境界）** として分けています。
+この境界をレポートでは **Pure Tx領域** と **副作用境界（Side-Effect Boundary）** として分けています。
 
 | 領域 | 性質 | 補償戦略 |
 | :--- | :--- | :--- |
@@ -99,7 +99,7 @@ sequenceDiagram
     participant SDB as ScalarDB Tx
     participant OB as Outbox
     participant Worker as Payment ACL Worker
-    participant Ext as外部決済SaaS
+    participant Ext as 外部決済SaaS
     participant CH as Compensation Handler
 
     Web->>CO: checkout

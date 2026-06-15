@@ -95,9 +95,7 @@ scalar.db.multi_storage.storages.mysql.password: pos_password
 
 # Multi-storage routing
 scalar.db.storage: multi-storage
-scalar.db.multi_storage.namespace_mapping: \
-  catalog:postgres,loyalty:postgres,receipt:postgres,identity:postgres,audit:postgres,\
-  inventory:mysql,order:mysql,payment:mysql,return:mysql
+scalar.db.multi_storage.namespace_mapping: catalog:postgres,loyalty:postgres,receipt:postgres,identity:postgres,audit:postgres,inventory:mysql,order:mysql,payment:mysql,return:mysql
 scalar.db.multi_storage.default_storage: postgres
 ```
 
@@ -788,9 +786,7 @@ scalar.db.multi_storage.storages.mysql.storage: jdbc
 scalar.db.multi_storage.storages.mysql.contact_points: jdbc:mysql://mysql:3306/pos_mysql
 
 scalar.db.storage: multi-storage
-scalar.db.multi_storage.namespace_mapping: \
-  catalog:postgres,loyalty:postgres,receipt:postgres,identity:postgres,audit:postgres,\
-  inventory:mysql,order:mysql,payment:mysql,return:mysql
+scalar.db.multi_storage.namespace_mapping: catalog:postgres,loyalty:postgres,receipt:postgres,identity:postgres,audit:postgres,inventory:mysql,order:mysql,payment:mysql,return:mysql
 ```
 
 Namespaceを境界コンテキスト単位に分け、それぞれをPostgreSQLまたはMySQLへルーティングします。

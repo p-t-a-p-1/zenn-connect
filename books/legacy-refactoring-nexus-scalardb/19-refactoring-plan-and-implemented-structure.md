@@ -259,7 +259,7 @@ shared/security/
 
 Order ServiceやPayment Serviceは、外部副作用をScalarDBトランザクションの中で直接実行せず、Outboxに記録します。Checkout OrchestratorやReturn Serviceは、Sagaの状態、タイムアウト、補償処理を扱います。
 
-これにより、設計レビューで重視されていたScalarDB Tx内で外部APIを呼ばない補償処理を追跡可能にする二重補償を防ぐといった観点が、共通部品として実装に反映されています。
+これにより、設計レビューで重視されていたScalarDB Tx内で外部APIを呼ばない、補償処理を追跡可能にする、二重補償を防ぐ、といった観点が、共通部品として実装に反映されています。
 
 ## 本章のまとめ
 

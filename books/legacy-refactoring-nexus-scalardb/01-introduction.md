@@ -23,7 +23,7 @@ title: "はじめに"
 
 この三つの技術を組み合わせることで、これまでの膨大な時間とコストを要したリファクタリングから脱却し、確かな事実に基づいた安全なモダナイゼーションを体験できると考えています！
 
-![summary](/images/legacy-refactoring-nexus-scalardb/summary.png)
+![summary](/images/legacy-refactoring-nexus-scalardb/summary.png =600x)
 *本書の全体像*
 
 ## 本書の構成

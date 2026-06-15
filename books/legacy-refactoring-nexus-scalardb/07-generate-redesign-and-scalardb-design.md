@@ -156,20 +156,16 @@ sequenceDiagram
 
   ---
   設計完了サマリ
-
-  ターゲットアーキテクチャ（13 サービス）
-  ┌──────────────────────┬─────────────────────────────────────────────────────────────────────────┐
-  │         種別         │                                サービス                                 │
-  ├──────────────────────┼─────────────────────────────────────────────────────────────────────────┤
-  │ Process（業務処理）  │ Order, Inventory, Payment, Loyalty, Return, Checkout Orchestrator, Cart │
-  ├──────────────────────┼─────────────────────────────────────────────────────────────────────────┤
-  │ Master（マスタ管理） │ Catalog, Receipt                                                        │
-  ├──────────────────────┼─────────────────────────────────────────────────────────────────────────┤
-  │ Supporting（横断的） │ Identity, Audit                                                         │
-  ├──────────────────────┼─────────────────────────────────────────────────────────────────────────┤
-  │ Integration（連携）  │ Dashboard, API Gateway/BFF                                              │
-  └──────────────────────┴─────────────────────────────────────────────────────────────────────────┘
 ```
+
+ターゲットアーキテクチャ（13 サービス）
+
+| 種別 | サービス |
+| :--- | :--- |
+| Process（業務処理） | Order, Inventory, Payment, Loyalty, Return, Checkout Orchestrator, Cart |
+| Master（マスタ管理） | Catalog, Receipt |
+| Supporting（横断的） | Identity, Audit |
+| Integration（連携） | Dashboard, API Gateway/BFF |
 
 ![target-architecture-01](/images/legacy-refactoring-nexus-scalardb/target-architecture-01.png)
 *アーキテクチャ概観、設計原則、サービスカタログ(全13サービス)*
@@ -177,7 +173,7 @@ sequenceDiagram
 ![target-architecture-02](/images/legacy-refactoring-nexus-scalardb/target-architecture-02.png)
 *各サービスの詳細（責務、エンドポイント、永続化、並行制御、ドメインイベント発行など）*
 
-![target-architecturemermaid-diagram](/images/legacy-refactoring-nexus-scalardb/target-architecture-mermaid-diagram.png)
+![target-architecture-mermaid-diagram](/images/legacy-refactoring-nexus-scalardb/target-architecture-mermaid-diagram.png)
 *システム全体のアーキテクチャ図*
 
 ## ScalarDB設計とAPI設計（/architect:design-scalardb & /architect:design-api）

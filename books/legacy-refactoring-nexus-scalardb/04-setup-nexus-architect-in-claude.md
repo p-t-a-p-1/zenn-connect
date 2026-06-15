@@ -6,6 +6,9 @@ title: "Claude CodeにNexus Architectを導入する"
 Nexus ArchitectをClaude Codeに導入し、/architect系・/scalardb系コマンドを使える状態にする手順を確認します。
 :::
 
+前章までは、本書全体の流れと、あえて技術的負債を組み込んだ題材のPOSシステムを確認しました。
+ここからは、実際にClaude CodeへNexus Architectを導入し、レガシーシステムの調査・分析からターゲット構成の再設計、初期レビューまでを実行する準備を進めます。
+
 ## プラグインのインストールと初期設定
 
 nexus-architect は、Claude Code および Codex で動作するシステムアーキテクチャ設計支援のためのプラグインです。静的解析の実行プログラムを単体で起動するのではなく、Claude Code の対話的なコンテキストにおいて、AIエージェントのスキルとして呼び出して利用します。
