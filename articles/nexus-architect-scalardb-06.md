@@ -1,5 +1,5 @@
 ---
-title: "【連載】（第6回）Nexus Architect × ScalarDB：効果測定と実務への活かし方"
+title: "【連載】（第6回）Nexus Architect × ScalarDB：モダナイゼーション改善結果とまとめ"
 emoji: "🧭"
 type: "tech"
 topics: ["scalardb","refactoring","architecture","マイクロサービス","モダナイゼーション"]
