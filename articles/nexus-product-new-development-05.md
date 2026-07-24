@@ -24,7 +24,7 @@ publication_name: "scalar_sol_blog"
 | 第1回 | [完成形と全体像](https://zenn.dev/scalar_sol_blog/articles/nexus-product-new-development-01) | 完成したRADARの機能、利用者、中核業務、リポジトリ構成 |
 | 第2回 | [企画と壁打ち](https://zenn.dev/scalar_sol_blog/articles/nexus-product-new-development-02) | AIとの壁打ち、Vision、成功指標、仮説、ペルソナ、UIモック |
 | 第3回 | [MVPと本番設計](https://zenn.dev/scalar_sol_blog/articles/nexus-product-new-development-03) | コンシェルジュMVP、実運用検証、本番技術選定、MMI・DDD評価 |
-| 第4回 | [設計レビュー](https://zenn.dev/scalar_sol_blog/articles/nexus-product-new-development-04) | 境界コンテキスト、正式化トランザクション、5観点レビュー、P0/P1対応 |
+| 第4回 | [設計レビュー](https://zenn.dev/scalar_sol_blog/articles/nexus-product-new-development-04) | 境界コンテキスト、正式化トランザクション、5観点レビュー、重大課題への対応 |
 | 第5回 | [実装と再設計](https://zenn.dev/scalar_sol_blog/articles/nexus-product-new-development-05) | Spring Boot、Next.js、OIDC、行レベル認可、通知、監査、実利用後の再設計 |
 
 ---
@@ -104,12 +104,7 @@ public void formalize() {
 ![設計レビューをバックエンド実装とテストへ落とす](/images/nexus-product-new-development/chapter5-backend-tests.png)
 _BCごとのSpring Boot実装、Flywayによるスキーマ管理、レビューリスクから導いたテストを一つにつなぐ_
 
-### この節のまとめ
-
-- ホストへJDKを追加せず、Docker上でGradleとJava 21を実行しました。
-- BC-001/002/003から段階的に本番バックエンドを実装しました。
-- 業務ルールをJPA集約へ置き、Flywayをスキーマ変更の唯一の経路にしました。
-- レビュー指摘を統合テストと認可テストへ変換しました。
+Docker上にビルド環境をそろえ、商談・アサイン、遅延リスク、メンバーの各領域を段階的に実装しながら、業務ルールとレビュー指摘をコードとテストへ落とし込みました。
 
 ---
 
@@ -189,12 +184,7 @@ const response = await fetch(`${BACKEND_URL}${path}`, {
 ![認証・操作権限・行レベル制御を分ける](/images/nexus-product-new-development/chapter5-auth-boundaries.png)
 _OIDCとCookie中継の先で、セッション、PermissionAggregate、SALESの行レベル制御をバックエンドへ重ねる_
 
-### この節のまとめ
-
-- BC-005を早期実装し、認証・操作権限・行レベル制御をAPIへ組み込みました。
-- 権限マトリクスを`PermissionAggregate`としてコード化しました。
-- Next.jsはCookieを中継するSSRとServer Actionsでバックエンドへ接続します。
-- 実OIDCログインでredirect URIの不一致を発見し、Spring Security設定を修正しました。
+認証・操作権限・データ単位のアクセス制御を早い段階でAPIへ組み込み、Next.jsから実際にログインして、設定の不一致まで確認・修正しました。
 
 ---
 
@@ -276,12 +266,7 @@ AI駆動開発では、生成物を常に最新へ上書きするより、次の
 ![実利用からプロダクトの背骨を広げる](/images/nexus-product-new-development/chapter5-product-redesign.png)
 _仮アサイン中心の初期構造を、予実、営業依頼、アサイン、調達の業務フローへ広げ、過去の判断との差分を管理する_
 
-### この節のまとめ
-
-- 通知はコミット後に非同期処理し、重複排除と失敗状態を持ちますが、再試行の実行基盤は未実装です。
-- 実チャネルは未接続であり、実装済み基盤と残課題を区別しています。
-- 監査ログは重要業務と同じトランザクションで記録します。
-- 実利用とのギャップから、RADARの背骨を予実、営業依頼、アサイン、調達へ広げました。
+通知と監査の整合性を保つ土台を実装し、未完成部分を明記しつつ、実利用で見えた予実・営業依頼・アサイン・調達へプロダクトの中心を広げました。
 
 ---
 
@@ -304,7 +289,7 @@ flowchart TD
     E --> F["Architectへ引き継ぎ"]
     F --> G["MMI・DDD評価とBC再設計"]
     G --> H["5観点レビュー"]
-    H --> I["P0/P1を解消"]
+    H --> I["重大・重要課題を解消"]
     I --> J["Spring Boot + Next.js実装"]
     J --> K["実利用から再設計"]
 ```
@@ -316,7 +301,7 @@ _業務課題から壁打ち、MVP、実運用、設計レビュー、実装、�
 
 新規プロダクトでは、機能一覧を詳細にするほど安心してしまいます。
 
-RADARで本番投資を判断できたのは、ASM-001/002に検証方法とキル閾値を置いたためです。MVPが動いたことではなく、実利用で閾値へ抵触しなかったことをGoの根拠にしました。
+RADARで本番開発へ進む判断ができたのは、「アプリが優先して使われるか」「仮アサインが使われるか」という仮説に、検証方法と見直し基準を置いたためです。MVPが動いたことではなく、実利用で基準を満たしたことを判断の根拠にしました。
 
 ### 型2：MVPのコードではなく学びを引き継ぐ
 
@@ -358,8 +343,8 @@ AIの自律性を高めることと、業務上の判断を委ねることは別
 
 現在のRADARにも未完了項目があります。
 
-- ASM-004の定量効果測定
-- ASM-006のリスク検知実効性
+- アサイン調整時間がどれだけ短縮したかの測定
+- 遅延リスクを早期に検知できたかの検証
 - 通知の実チャネル接続
 - RDS上の監査ログINSERT-only権限
 - 本番トポロジ確定後のCookie Domain戦略
@@ -377,12 +362,7 @@ RADARは、一度のプロンプトで完成したプロダクトではありま
 
 AI駆動プロダクト開発で再利用できるのは、最終成果物の形よりも、この往復の仕組みです。
 
-### この節のまとめ
-
-- Productの壁打ち、MVP検証、Architect設計、5観点レビュー、実装を一つの流れとしてつなぎました。
-- MVPからはコードではなく、検証済みの業務知識を引き継ぎました。
-- レビュー指摘をDB制約、ロック、冪等性、認証、テストへ変換しました。
-- 人間の意思決定と、未完了項目を明示することがAI協働の品質を支えます。
+企画の壁打ちからMVP検証、設計レビュー、実装までを一つの流れでつなぎ、人間の判断と未完了項目を明示しながら、得られた業務知識をプロダクトへ反映しました。
 
 ---
 

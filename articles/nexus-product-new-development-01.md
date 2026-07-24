@@ -18,7 +18,7 @@ Googleスプレッドシートで管理していた商談・案件・人員ア�
 | 第1回 | [完成形と全体像](https://zenn.dev/scalar_sol_blog/articles/nexus-product-new-development-01) | 完成したRADARの機能、利用者、中核業務、リポジトリ構成                  |
 | 第2回 | [企画と壁打ち](https://zenn.dev/scalar_sol_blog/articles/nexus-product-new-development-02)   | AIとの壁打ち、Vision、成功指標、仮説、ペルソナ、UIモック               |
 | 第3回 | [MVPと本番設計](https://zenn.dev/scalar_sol_blog/articles/nexus-product-new-development-03)  | コンシェルジュMVP、実運用検証、本番技術選定、MMI・DDD評価              |
-| 第4回 | [設計レビュー](https://zenn.dev/scalar_sol_blog/articles/nexus-product-new-development-04)   | 境界コンテキスト、正式化トランザクション、5観点レビュー、P0/P1対応     |
+| 第4回 | [設計レビュー](https://zenn.dev/scalar_sol_blog/articles/nexus-product-new-development-04)   | 境界コンテキスト、正式化トランザクション、5観点レビュー、重大課題への対応 |
 | 第5回 | [実装と再設計](https://zenn.dev/scalar_sol_blog/articles/nexus-product-new-development-05)   | Spring Boot、Next.js、OIDC、行レベル認可、通知、監査、実利用後の再設計 |
 
 ---
@@ -543,13 +543,7 @@ Hono、SQLite、React、Viteで作ったコンシェルジュMVPは、`docs/conc
 
 MVPは本番コードの土台ではありません。しかし、何を検証し、どの画面が使われ、どこに技術的負債があったかを示す証拠です。そのため、現在の実装と混ぜず、削除もせず、読み取り専用の履歴として残しています。
 
-### この節のまとめ
-
-- 現在動くプロダクトはSpring BootバックエンドとNext.jsフロントエンドです。
-- バックエンドは境界コンテキストごとに分けたモジュラーモノリスです。
-- 正式化の業務ルールはサービス、Server Action、DB制約に分担されています。
-- デザインシステムはトークンを単一ソースとして管理します。
-- Nexus Architectの成果物とMVPを`docs/`へアーカイブし、意思決定の履歴を追跡できます。
+RADARは、境界コンテキストごとに分けたSpring BootとNext.jsの構成を採り、業務ルール、デザイン、設計判断の履歴をそれぞれ追跡できる形で管理しています。
 
 ---
 
