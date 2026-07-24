@@ -485,7 +485,7 @@ _`tokens.css`を実行時の単一ソースとし、`globals.css`を介してsha
 正式アサイン: 実線 + 正式ラベル + 状態色
 ```
 
-この原則はガイドラインだけでなく、稼働計画グリッドのコンポーネントにも現れています。仮アサインには **「仮」** というテキストと`aria-label`を付け、正式アサインとは形状も変えています。
+この原則はガイドラインだけでなく、稼働計画グリッドのコンポーネントにも現れています。仮アサインには **仮** というテキストと`aria-label`を付け、正式アサインとは形状も変えています。
 
 ```tsx:frontend/components/organisms/CapacityPlanGrid/CapacityPlanGrid.tsx
 function ChipView({ assignment, deal }: { assignment: PlanAssignment; deal: PlanDeal }) {
