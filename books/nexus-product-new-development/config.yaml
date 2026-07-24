@@ -1,0 +1,27 @@
+title: "Nexus Architectで作るRADAR：壁打ちからMVP検証・本番実装まで"
+summary: "商談・案件管理アプリRADARを題材に、完成した成果物、Nexus Architectとの壁打ち、コンシェルジュMVP、本番設計、5観点レビュー、Spring BootとNext.jsによる実装までを、実際の設計書とコードに沿って解説します。"
+topics: ["product","architecture","ai","ddd","mvp"]
+published: false
+price: 0
+toc_depth: 2
+chapters:
+  - 01-introduction
+  - 02-what-is-product-plugin
+  - 03-target-product-and-problem
+  - 04-product-start-direction
+  - 05-interactive-decision-making
+  - 06-build-concierge-mvp
+  - 07-validate-mvp-in-real-use
+  - 08-scope-data-migration-out
+  - 09-move-to-production-design
+  - 10-requirements-and-tech-stack
+  - 11-domain-and-context-redesign
+  - 12-data-api-and-service-design
+  - 13-design-review-and-blockers
+  - 14-goal-stop-hook-continuation
+  - 15-p1-fixes-to-implementation
+  - 16-spring-boot-implementation
+  - 17-auth-and-row-level-access
+  - 18-notification-audit-oidc
+  - 19-ai-collaboration-patterns
+  - 20-conclusion
