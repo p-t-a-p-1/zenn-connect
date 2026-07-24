@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">デザインシステムを単一ソースにする</title>
+  <desc id="desc">tokens.cssからglobals.cssを介してshadcn/uiとTailwind CSS、実コンポーネントへ値を伝播する構造</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity=".08"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M1 1 11 6 1 11Z" fill="#2563eb"/>
+    </marker>
+    <style>
+      text { font-family:"Hiragino Sans","Noto Sans JP",sans-serif; fill:#0f172a; }
+      .mono { font-family:"SFMono-Regular",Menlo,monospace; }
+      .title { font-size:44px; font-weight:800; }
+      .subtitle { font-size:20px; fill:#475569; }
+      .stage { font-size:24px; font-weight:800; }
+      .heading { font-size:20px; font-weight:800; }
+      .label { font-size:17px; font-weight:700; }
+      .small { font-size:14px; fill:#475569; }
+      .code { font-size:14px; font-weight:600; }
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="#f8fafc"/>
+  <circle cx="1510" cy="40" r="180" fill="#dcfce7" opacity=".55"/>
+  <circle cx="40" cy="880" r="200" fill="#e0e7ff" opacity=".55"/>
+  <text x="70" y="78" class="title">デザインシステムを単一ソースにする</text>
+  <text x="70" y="115" class="subtitle">実コードの参照関係：値を1か所へ集約し、意味のある名前でUIまで届ける</text>
+
+  <!-- source -->
+  <g filter="url(#shadow)">
+    <rect x="55" y="165" width="485" height="560" rx="24" fill="#eef2ff" stroke="#4f46e5" stroke-width="3"/>
+    <text x="90" y="210" class="stage" fill="#4338ca">1. Single Source of Truth</text>
+    <rect x="82" y="240" width="305" height="350" rx="16" fill="#fff" stroke="#a5b4fc" stroke-width="2"/>
+    <text x="105" y="278" class="heading">tokens.css</text>
+    <text x="105" y="305" class="small">ブランド値の唯一の実行時ソース</text>
+
+    <rect x="105" y="338" width="24" height="24" rx="5" fill="#2563eb"/>
+    <text x="142" y="356" class="mono" font-size="12" font-weight="600">--color-primary</text>
+    <text x="365" y="356" text-anchor="end" class="mono" font-size="12" font-weight="700" fill="#2563eb">#2563eb</text>
+    <rect x="105" y="382" width="24" height="24" rx="5" fill="#16a34a"/>
+    <text x="142" y="400" class="mono" font-size="12" font-weight="600">--color-success</text>
+    <text x="365" y="400" text-anchor="end" class="mono" font-size="12" font-weight="700" fill="#15803d">#16a34a</text>
+    <rect x="105" y="426" width="24" height="24" rx="5" fill="#d97706"/>
+    <text x="142" y="444" class="mono" font-size="12" font-weight="600">--color-warning</text>
+    <text x="365" y="444" text-anchor="end" class="mono" font-size="12" font-weight="700" fill="#c2410c">#d97706</text>
+    <rect x="105" y="470" width="24" height="24" rx="5" fill="#dc2626"/>
+    <text x="142" y="488" class="mono" font-size="12" font-weight="600">--color-danger</text>
+    <text x="365" y="488" text-anchor="end" class="mono" font-size="12" font-weight="700" fill="#b91c1c">#dc2626</text>
+
+    <g class="small">
+      <rect x="105" y="526" width="54" height="30" rx="15" fill="#e0e7ff"/><text x="132" y="546" text-anchor="middle">Color</text>
+      <rect x="166" y="526" width="56" height="30" rx="15" fill="#e0e7ff"/><text x="194" y="546" text-anchor="middle">Space</text>
+      <rect x="229" y="526" width="48" height="30" rx="15" fill="#e0e7ff"/><text x="253" y="546" text-anchor="middle">Font</text>
+      <rect x="284" y="526" width="65" height="30" rx="15" fill="#e0e7ff"/><text x="317" y="546" text-anchor="middle">Radius</text>
+    </g>
+
+    <text x="415" y="274" class="label">仕様・ガイド</text>
+    <rect x="407" y="295" width="105" height="65" rx="12" fill="#fff" stroke="#c7d2fe"/>
+    <text x="460" y="334" text-anchor="middle" class="small">tokens.json</text>
+    <rect x="407" y="375" width="105" height="65" rx="12" fill="#fff" stroke="#c7d2fe"/>
+    <text x="460" y="414" text-anchor="middle" class="small">guidelines.md</text>
+    <rect x="407" y="455" width="105" height="65" rx="12" fill="#fff" stroke="#c7d2fe"/>
+    <text x="460" y="494" text-anchor="middle" class="small">components.md</text>
+    <rect x="82" y="615" width="430" height="75" rx="14" fill="#e0e7ff"/>
+    <text x="105" y="646" class="small">フロントエンドが直接 @import するのは</text>
+    <text x="105" y="674" class="label mono" fill="#4338ca">design-system/default/tokens.css</text>
+  </g>
+
+  <!-- bridge -->
+  <g filter="url(#shadow)">
+    <rect x="625" y="165" width="390" height="560" rx="24" fill="#fff7ed" stroke="#d97706" stroke-width="3"/>
+    <text x="660" y="210" class="stage" fill="#c2410c">2. Bridge</text>
+    <text x="660" y="257" class="heading">frontend/app/globals.css</text>
+    <rect x="655" y="285" width="330" height="170" rx="16" fill="#fff" stroke="#fdba74" stroke-width="2"/>
+    <rect x="677" y="309" width="34" height="34" rx="17" fill="#ffedd5"/>
+    <text x="694" y="332" text-anchor="middle" class="label" fill="#c2410c">A</text>
+    <text x="724" y="333" class="label">shadcn/ui スロット</text>
+    <rect x="677" y="358" width="286" height="62" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="696" y="395" class="code mono">--primary: var(--color-primary)</text>
+
+    <rect x="655" y="475" width="330" height="170" rx="16" fill="#fff" stroke="#fdba74" stroke-width="2"/>
+    <rect x="677" y="499" width="34" height="34" rx="17" fill="#ffedd5"/>
+    <text x="694" y="522" text-anchor="middle" class="label" fill="#c2410c">B</text>
+    <text x="724" y="523" class="label">Tailwind @theme inline</text>
+    <rect x="677" y="548" width="286" height="62" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="696" y="585" class="code mono">--color-success: var(...)</text>
+    <rect x="702" y="666" width="236" height="38" rx="19" fill="#ffedd5"/>
+    <text x="820" y="691" text-anchor="middle" class="label" fill="#c2410c">具体値を直書きしない</text>
+  </g>
+
+  <!-- components -->
+  <g filter="url(#shadow)">
+    <rect x="1100" y="165" width="445" height="560" rx="24" fill="#f0fdf4" stroke="#16a34a" stroke-width="3"/>
+    <text x="1135" y="210" class="stage" fill="#15803d">3. Components</text>
+
+    <rect x="1130" y="245" width="385" height="130" rx="16" fill="#fff" stroke="#86efac" stroke-width="2"/>
+    <text x="1155" y="278" class="heading">StatusBadge</text>
+    <text x="1155" y="310" class="mono" font-size="11" font-weight="700" fill="#c2410c">bg-warning-bg text-warning</text>
+    <text x="1155" y="333" class="mono" font-size="11" font-weight="700" fill="#c2410c">border-warning</text>
+    <rect x="1356" y="292" width="125" height="45" rx="22" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+    <text x="1418" y="321" text-anchor="middle" class="label" fill="#c2410c">仮アサイン</text>
+
+    <rect x="1130" y="395" width="385" height="145" rx="16" fill="#fff" stroke="#86efac" stroke-width="2"/>
+    <text x="1155" y="430" class="heading">CapacityPlanGrid</text>
+    <text x="1155" y="460" class="code mono" fill="#15803d">bg-success-bg text-success</text>
+    <rect x="1155" y="480" width="145" height="38" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="1228" y="505" text-anchor="middle" class="small">案件A 仮</text>
+    <rect x="1318" y="480" width="165" height="38" rx="8" fill="#f0fdf4" stroke="#16a34a"/>
+    <text x="1400" y="505" text-anchor="middle" class="label" fill="#15803d">案件B</text>
+
+    <rect x="1130" y="560" width="385" height="130" rx="16" fill="#fff" stroke="#86efac" stroke-width="2"/>
+    <text x="1155" y="595" font-size="17" font-weight="800">BudgetPerformanceChart</text>
+    <text x="1155" y="630" class="code mono" fill="#2563eb">var(--color-primary)</text>
+    <circle cx="1450" cy="628" r="31" fill="none" stroke="#e2e8f0" stroke-width="10"/>
+    <circle cx="1450" cy="628" r="31" fill="none" stroke="#2563eb" stroke-width="10" stroke-dasharray="146 195" stroke-linecap="round" transform="rotate(-90 1450 628)"/>
+    <text x="1450" y="635" text-anchor="middle" class="label">75%</text>
+  </g>
+
+  <!-- arrows -->
+  <path d="M540 445H607" stroke="#2563eb" stroke-width="5" marker-end="url(#arrow)"/>
+  <path d="M597 437 612 445 597 453Z" fill="#2563eb"/>
+  <text x="574" y="423" text-anchor="middle" class="label mono" fill="#1d4ed8">@import</text>
+  <path d="M1015 360H1082" stroke="#2563eb" stroke-width="5" marker-end="url(#arrow)"/>
+  <path d="M1072 352 1087 360 1072 368Z" fill="#2563eb"/>
+  <path d="M1015 560H1082" stroke="#2563eb" stroke-width="5" marker-end="url(#arrow)"/>
+  <path d="M1072 552 1087 560 1072 568Z" fill="#2563eb"/>
+
+  <!-- outcome -->
+  <rect x="55" y="770" width="1490" height="92" rx="22" fill="#0f172a"/>
+  <text x="800" y="810" text-anchor="middle" font-size="24" font-weight="800" fill="#fff">tokens.cssを変更すると、全コンポーネントへ一貫して反映</text>
+  <circle cx="390" cy="838" r="7" fill="#60a5fa"/>
+  <text x="412" y="845" font-size="17" font-weight="700" fill="#fff">色の一貫性</text>
+  <circle cx="710" cy="838" r="7" fill="#4ade80"/>
+  <text x="732" y="845" font-size="17" font-weight="700" fill="#fff">アクセシビリティ</text>
+  <circle cx="1065" cy="838" r="7" fill="#fbbf24"/>
+  <text x="1087" y="845" font-size="17" font-weight="700" fill="#fff">変更箇所を集約</text>
+</svg>
