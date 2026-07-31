@@ -3,8 +3,9 @@ title: "【AI駆動プロダクト開発 第1回】開発会社の商談・案�
 emoji: "🎯"
 type: "tech"
 topics: ["ai", "product", "architecture", "nextjs", "springboot"]
-published: false
+published: true
 publication_name: "scalar_sol_blog"
+published_at: 2026-08-03 17:30
 ---
 
 :::message

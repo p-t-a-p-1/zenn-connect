@@ -3,8 +3,9 @@ title: "【AI駆動プロダクト開発 第5回】Spring Boot × Next.js：認�
 emoji: "🚀"
 type: "tech"
 topics: ["springboot","nextjs","security","architecture","ai"]
-published: false
+published: true
 publication_name: "scalar_sol_blog"
+published_at: 2026-08-07 17:30
 ---
 
 ---

@@ -3,8 +3,9 @@ title: "【AI駆動プロダクト開発 第2回】AIに要件定義を丸投げ
 emoji: "🧭"
 type: "tech"
 topics: ["ai","product","mvp","ux","requirements"]
-published: false
+published: true
 publication_name: "scalar_sol_blog"
+published_at: 2026-08-04 17:30
 ---
 
 ---

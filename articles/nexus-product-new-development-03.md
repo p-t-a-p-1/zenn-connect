@@ -3,8 +3,9 @@ title: "【AI駆動プロダクト開発 第3回】MVPのコードは捨てる�
 emoji: "🧪"
 type: "tech"
 topics: ["mvp","ddd","architecture","ai","springboot"]
-published: false
+published: true
 publication_name: "scalar_sol_blog"
+published_at: 2026-08-05 17:30
 ---
 
 ---

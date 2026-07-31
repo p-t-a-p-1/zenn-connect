@@ -3,8 +3,9 @@ title: "【AI駆動プロダクト開発 第4回】設計レビューで重大�
 emoji: "🛡️"
 type: "tech"
 topics: ["architecture","ddd","postgresql","designreview","ai"]
-published: false
+published: true
 publication_name: "scalar_sol_blog"
+published_at: 2026-08-06 17:30
 ---
 
 ---
