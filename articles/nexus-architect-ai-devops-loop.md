@@ -3,7 +3,7 @@ title: "企画・設計・Issue・実装をつなぐAI駆動開発の進め方"
 emoji: "🔄"
 type: "tech"
 topics: ["github", "claudecode", "ai駆動開発", "architecture", "devops"]
-published: false
+published: true
 publication_name: "scalar_sol_blog"
 published_at: 2026-08-12 17:30
 ---
