@@ -1,27 +1,29 @@
-title: "Nexus Architectで作るRADAR：壁打ちからMVP検証・本番実装まで"
-summary: "商談・案件管理アプリRADARを題材に、完成した成果物、Nexus Architectとの壁打ち、コンシェルジュMVP、本番設計、5観点レビュー、Spring BootとNext.jsによる実装までを、実際の設計書とコードに沿って解説します。"
-topics: ["product","architecture","ai","ddd","mvp"]
+title: "AIエージェントと進めるソフトウェア開発"
+summary: "Claude CodeとNexus Architectを使い、RADARの企画、設計、Issue、実装、レビュー、運用をつないだ開発の進め方を解説します。"
+topics: ["ai","claudecode","product","architecture","github"]
 published: false
 price: 0
 toc_depth: 2
 chapters:
   - 01-introduction
-  - 02-what-is-product-plugin
-  - 03-target-product-and-problem
-  - 04-product-start-direction
-  - 05-interactive-decision-making
-  - 06-build-concierge-mvp
-  - 07-validate-mvp-in-real-use
-  - 08-scope-data-migration-out
-  - 09-move-to-production-design
-  - 10-requirements-and-tech-stack
-  - 11-domain-and-context-redesign
-  - 12-data-api-and-service-design
-  - 13-design-review-and-blockers
-  - 14-goal-stop-hook-continuation
-  - 15-p1-fixes-to-implementation
-  - 16-spring-boot-implementation
-  - 17-auth-and-row-level-access
-  - 18-notification-audit-oidc
-  - 19-ai-collaboration-patterns
-  - 20-conclusion
+  - 02-radar-overview
+  - 03-users-and-core-work
+  - 04-artifacts-and-repository
+  - 05-ai-driven-development
+  - 06-nexus-architect-dialogue
+  - 07-product-direction
+  - 08-hypotheses-metrics-scope
+  - 09-personas-ui-design-system
+  - 10-concierge-mvp
+  - 11-real-use-validation
+  - 12-product-to-architect
+  - 13-mvp-evaluation
+  - 14-bounded-contexts
+  - 15-data-api-formalization
+  - 16-design-review-and-implementation
+  - 17-backlog-issue-decomposition
+  - 18-issue-delivery-review-merge
+  - 19-spring-boot-postgresql
+  - 20-nextjs-oidc-authorization
+  - 21-notification-audit-redesign
+  - 22-conclusion

@@ -397,6 +397,117 @@ Epic配下のIssueを順番に進める場合は、`deliver-backlog`を使いま
 | `decisions.md` | 実装中に決めたこと |
 | `review-knowledge.md` | レビューで得た教訓 |
 
+以下は実際の出力からの抜粋です。プロダクト固有の名前とパッケージ名のみ匿名化しています。
+
+:::details architecture-guardrails.mdの出力例
+
+##### Transactional Guardrail — Deal + DealStatusHistory
+
+DealとDealStatusHistoryへの書き込みは、1つの`@Transactional`境界内で行います。`UpdateDealProgress`のProcess Serviceで両方を保存し、どちらかの書き込みに失敗した場合は両方をロールバックします。
+
+##### API Layering → Spring Component Mapping
+
+| API Layer | Spring mapping |
+| :--- | :--- |
+| System APIs | Entityごとに`@Repository`と`@Service`を用意する |
+| Process APIs | Process APIごとに専用の`@Service`を用意する |
+| Experience APIs | Experience APIごとに`@RestController`を用意する |
+
+依存方向はExperience → Process → Systemに限定します。System LayerからProcess LayerやExperience Layerを呼び出しません。
+
+:::
+
+:::details coding-standards.mdの出力例
+
+##### Naming
+
+- REST DTOs: inbound payloadは`Request`、outbound payloadは`Response`で終える
+- JPA entities: domain entityと同じ名前を使い、suffixを付けない
+- Repositories: `<Entity>Repository`とし、`JpaRepository<Entity, UUID>`を継承する
+- Services: CRUDは`<Entity>Service`、Process APIは`<Verb><Noun>Service`とする
+- Controllers: `<Entity>Controller`または`<Feature>Controller`とする
+- Domain exceptions: `<Reason>Exception`とする
+
+##### Exception handling
+
+- `*NotFoundException` → 404
+- validation / malformed input → 400
+- `InvalidStatusTransitionException` → 409
+- unexpected exceptions → 500
+
+レスポンスにはstack trace、exception class、SQLを含めず、詳細はserver-side logへ記録します。
+
+:::
+
+:::details data-contracts.mdの出力例
+
+##### Deal status enum
+
+| Japanese（UI/API） | Java constant | DB value |
+| :--- | :--- | :--- |
+| 初回接触 | `INITIAL_CONTACT` | `INITIAL_CONTACT` |
+| 商談中 | `IN_NEGOTIATION` | `IN_NEGOTIATION` |
+| 見積提示 | `QUOTE_SENT` | `QUOTE_SENT` |
+| 成約 | `WON` | `WON` |
+| 失注 | `LOST` | `LOST` |
+
+APIでは日本語の値を使い、mapping layerでJava enumへ変換します。DBには英語のenum constantを`VARCHAR`として保存します。
+
+##### Aggregate boundaries
+
+- Deal aggregateは`Deal`をrootとし、`DealStatusHistory`を含む
+- status updateでは両方のrowをsingle transactionで保存する
+- `Team`、`User`、`TeamMembership`はそれぞれ別のaggregateとする
+- `DealStatusHistory`はinsert-onlyとし、`UPDATE`と`DELETE`を行わない
+
+:::
+
+:::details nfr-budgets.mdの出力例
+
+##### Per bounded-context targets
+
+| Context | Criticality | Availability target | Latency target（p95） | Status |
+| :--- | :--- | :--- | :--- | :--- |
+| CTX-001 Deal Management | Critical | 99.5% / 30d | < 500ms | TBD-assumption |
+| CTX-002 Team Visibility | Standard | 99.0% / 30d | < 800ms | TBD-assumption |
+| CTX-003 Identity & Team | Critical | 99.5% / 30d | dedicated targetなし | TBD-assumption |
+
+数値は実データから決めた目標ではなく、MVP時点の仮説です。application codeへhard-codeせず、critical pathの処理時間を計測して、launch後のデータから見直します。
+
+:::
+
+:::details decisions.mdの出力例
+
+##### 2026-07-31: Technology stack
+
+- Decision: Java 21 + Spring Boot 4.0.7 + PostgreSQL、single Maven module、single deployable monolithを採用する
+- Why: MVPではmonolithが推奨され、分散transactionやAPI Gatewayを必要としないため
+- Dependency versions: Spring Boot 4.0.7、PostgreSQL JDBC 42.7.13、Java 21 LTS
+
+##### 2026-07-31: source_root
+
+- Decision: `source_root = backend/`
+- Why: greenfield repositoryのため、将来`frontend/`を追加できる構成を残す
+
+:::
+
+:::details review-knowledge.mdの出力例
+
+##### KN-3: Many-to-many join tables need an explicit uniqueness constraint
+
+- Rule: many-to-many relationshipを表すmembership entityには、foreign keyの組にDB-levelの`UNIQUE` constraintを設定し、applicationでも登録前に重複を確認する
+- Anti-pattern: 既存の`team_id`と`user_id`を確認せず、呼び出しのたびに新しいTeamMembershipを追加する
+- Rationale: 重複したmembershipは、team member数や集計結果を誤らせるため
+- Severity pattern: `[B]`
+
+##### KN-4: Foreign-key-referencing input must be existence-checked
+
+- Rule: foreign keyを受け取るServiceは、書き込み前に参照先が存在することを確認する
+- Anti-pattern: `changedBy`を検証せずに保存し、DBのforeign key constraintで失敗して500を返す
+- Expected behavior: Serviceで存在確認を行い、存在しない場合は明確な404を返す
+
+:::
+
 #### ブランチとステータス
 
 ブランチ名は、各スキルが同じIssueを特定できるように統一されています。
