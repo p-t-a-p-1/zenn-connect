@@ -5,21 +5,24 @@ type: "tech"
 topics: ["github", "claudecode", "ai駆動開発", "architecture", "devops"]
 published: false
 publication_name: "scalar_sol_blog"
+published_at: 2026-08-12 17:30
 ---
 
 ## はじめに
 
-AIを使ったコード生成は、開発現場でも珍しくなくなりました。
+AIを使ったコード生成は、開発現場でもほぼ日常的になりました！！
 
 実際のプロダクト開発では、コードを書く前後にも多くの作業があります。設計をバックログへ分解し、GitHub Issueへ登録する。Issueごとに実装してPull Requestを作り、レビューを通してからマージする。レビューで見つかった課題は、次のIssueにも反映しなければなりません。
 
-この記事では、Claude Codeプラグインの **Nexus Architect** を使い、企画、設計、GitHub Issueの作成、実装、レビュー、マージをつなげた流れを紹介します。
+この記事では、Claude Codeプラグインの **Nexus Architect** を使い、
+企画、設計、GitHub Issueの作成、実装、レビュー、マージをつなげた流れを紹介します！
+
 
 ### 対象の読者
 
 - Claude CodeやCodexを使った実装を、Issue作成やレビューまで広げたい方
 - 設計書からGitHubのバックログを作る流れを知りたい方
-- AIによる実装でも、人の承認とマージ条件を残したい方
+- **AIによる実装でも、人の承認とマージ条件を残したい方**
 - Nexus Architectのバックログ関連コマンドを整理したい方
 
 ### この記事でわかること
@@ -30,22 +33,31 @@ AIを使ったコード生成は、開発現場でも珍しくなくなりまし
 - `export-backlog`、`deliver-backlog`、`implement-backlog`の役割
 - 実装、レビュー、Pull Request、マージの進み方
 - レビュー結果を次のIssueへ引き継ぐ仕組み
-- GitLabで実行する場合の違い
 
 ![企画、設計、Issue、実装、レビュー、マージがつながるAI駆動開発の流れ](/images/nexus-architect-ai-devops-loop/ai-driven-development-flow.png)
 *企画から設計、Issue、実装、レビュー、マージまでをつなぐ流れ*
 
 ## AI駆動開発とは
 
-AI駆動開発は、AIをコード生成だけに使うのではなく、企画、設計、タスク分解、実装、レビューまで開発全体に組み込む進め方です。Claude CodeやCodexなどのコーディングエージェントを、各工程の支援に活用します。
+AI駆動開発は、AIをコード生成だけに使うのではなく、企画、設計、タスク分解、実装、レビューまで開発全体に組み込む進め方です。
 
-AIは設計案の作成、Issueへの分解、コードの実装、レビューを支援します。一方で、開発範囲、バックログ、Pull Request、マージなど、プロダクトに影響する判断は人が確認します。
+Claude CodeやCodexなどのコーディングエージェントを、各工程の支援に活用します。
 
-この進め方では、作業の完全な自動化よりも、各工程の判断を次へ渡すことを重視します。企画で決めた内容を設計へ渡し、設計をIssueへ落とし込み、実装とレビューの結果を次のIssueへ戻します。工程が分断されると、AIが個々のコードを正しく書いても、プロダクト全体との整合性を保てません。
+AIは設計案の作成、Issueへの分解、コードの実装、レビューを支援します。
+一方で、開発範囲、バックログ、Pull Request、マージなど、プロダクトに影響する判断は人が確認します。
+
+この進め方では、作業の完全な自動化よりも、各工程の判断を次へ渡すことを重視します。
+企画で決めた内容を設計へ渡し、設計をIssueへ落とし込み、実装とレビューの結果を次のIssueへ戻します。工程が分断されると、AIが個々のコードを正しく書いても、プロダクト全体との整合性を保てません。
 
 ## Nexus Architectとは
 
-Nexus Architectは、Claude Code向けのアーキテクチャ設計・開発支援プラグインです。企画、設計、バックログ作成、実装、レビュー、マージを個別のスキルとして提供し、それらを順番につなぎます。
+Nexus Architectは、Claude Code向けのアーキテクチャ設計・開発支援プラグインです。
+企画、設計、バックログ作成、実装、レビュー、マージを個別のスキルとして提供し、それらを順番につなぎます。
+
+詳しくはリポジトリをご覧ください...！！
+
+@[card](https://github.com/wfukatsu/nexus-architect)
+
 
 ### 3つの領域
 
@@ -56,6 +68,10 @@ Nexus Architectは、Claude Code向けのアーキテクチャ設計・開発支
 | `product` | 構想、仮説検証、ペルソナ、UI、機能、データモデル、API、非機能要件を設計する |
 | `architect` | システム設計、バックログ作成、実装、レビュー、マージを進める |
 | `scalardb` | ScalarDB・ScalarDL向けの設計、コード生成、トラブルシューティングを支援する |
+
+
+今回は、`product`と`architect`の領域を使い、企画からマージまでをつなぐ流れを紹介します！！
+
 
 ### 開発の流れ
 
@@ -78,7 +94,8 @@ flowchart LR
 
 ### 設計情報の保存
 
-Nexus Architectは、設計結果を`reports/`へ保存します。後続のスキルは同じファイル群を読むため、工程が変わっても設計上の判断を引き継げます。
+Nexus Architectは、設計結果をベースとなるディレクトリから、`reports/`へ保存します。
+後続のスキルは同じファイル群を読むため、工程が変わっても設計上の判断を引き継げます。
 
 ```text
 reports/
@@ -99,17 +116,21 @@ reports/
 | `ENT-001` | Entity | データモデルで扱う顧客や案件などの業務概念 |
 | `API-001` | API | 機能を実現するためのAPIやエンドポイント |
 
-末尾の`001`は、その種類の中で発行された順番です。たとえばIssueに`FEAT-001`と`API-001`が記載されていれば、実装対象の機能と参照すべきAPI設計をたどれます。これらの関連は`work/traceability.json`へ記録されるため、企画で決めた内容が、どの設計やIssueへ反映されたのかを後から確認できます。
+末尾の`001`は、その種類の中で発行された順番です。たとえばIssueに`FEAT-001`と`API-001`が記載されていれば、実装対象の機能と参照すべきAPI設計をたどれます。
+これらの関連は`work/traceability.json`へ記録されるため、企画で決めた内容が、どの設計やIssueへ反映されたのかを後から確認できます。
 
 ## GitHub/GitLabでの開発（バックログ）
 
 :::message alert
-以降はGitHubを使った実行例です。GitLabでも同じ流れを実行できます。GitLabではPull Requestの代わりにMerge Requestを使い、`glab` CLIからIssueを操作します。native Epicを利用できない環境では、Epic、Sub-Epic、IssueをすべてIssueとして登録し、ラベルとタスクリストで階層を表現します。
+以降はGitHubを使った実行例です。GitLabでも同じ流れを実行できます。
+GitLabではPull Requestの代わりにMerge Requestを使い、`glab` CLIからIssueを操作します。
+なお、機能としてEpicを利用できない環境では、Epic、Sub-Epic、IssueをすべてIssueとして登録し、ラベルとタスクリストで階層を表現します。
 :::
 
 ### バックログベース開発
 
-バックログベース開発では、設計内容をEpic、Sub-Epic、Issueへ分解し、Issueを実装の単位として扱います。各Issueには実装内容、受入基準、参照する設計書を記載します。AIはIssueを起点に実装とレビューを進め、人は計画やPull Requestを確認します。
+バックログベース開発では、設計内容をEpic、Sub-Epic、Issueへ分解し、Issueを実装の単位として扱います。
+各Issueには実装内容、受入基準、参照する設計書を記載します。AIはIssueを起点に実装とレビューを進め、人は計画やPull Requestを確認します。
 
 バックログは単なる作業一覧ではありません。設計と実装をつなぎ、完了条件を共有するための開発上の契約として機能します。
 
@@ -141,7 +162,8 @@ GitHubへIssueやPull Requestを作るには、次の準備が必要です。
 gh auth status
 ```
 
-`main`をpushする前にfeature branchをpushすると、そのfeature branchがdefault branchになる場合があります。後続のPull Requestで差分が空になる原因となるため、最初に`main`を用意しておくことが大切です。
+`main`をpushする前にfeatureブランチをpushすると、そのfeatureブランチがdefault branchになる場合があります。
+後続のPull Requestで差分が空になる原因となるため、最初に`main`ブランチを用意しておくことが大切です。
 
 ### Issue作成
 
@@ -244,7 +266,7 @@ gh auth status
 今回のGitHub出力では、Epic 1件、Sub-Epic 4件、Issue 17件の合計22件がGitHub Issueとして登録されました。
 
 ![GitHubに作成されたEpicとSub-Epic](/images/nexus-architect-ai-devops-loop/github-epic.png)
-*GitHub Issueとして登録されたEpic。Sub-Epicがタスクリストで関連付けられている*
+*GitHub Issueとして登録されたEpic。Sub-Epicがタスクリストで関連付けられています*
 
 #### GitHub上の階層
 
@@ -285,8 +307,6 @@ reports/03_domain/api-design.md
 
 size: M
 ```
-
-<!-- TODO: 受入基準とReferencesが表示されたGitHub Issue詳細画面のスクリーンショットを追加 -->
 
 #### バックログ計画
 
@@ -524,8 +544,6 @@ feature/I1.1.1-create-deal
 
 実装が完了すると、Issueのステータスは`status::review`になります。実装しただけでは`status::done`になりません。
 
-<!-- TODO: feature branchとstatus::reviewが確認できるGitHub Issueのスクリーンショットを追加 -->
-
 未マージは未完了です。
 
 ### レビュー
@@ -568,16 +586,20 @@ Pull Requestがopenであること、レビューの修正必須項目が0件で
 3. Sub-Epicが完了したらEpicのタスクリストを更新する
 4. `backlog-manifest.json`の状態を`done`にする
 
-<!-- TODO: マージ後にIssueがclosedとなり、親Issueのタスクリストが更新された画面のスクリーンショットを追加 -->
-
 Sub-Epicが完了した時点では、Epic全体を改めて確認します。個別Issueでは見つからなかった非対称な実装や、統合テストの不足が見つかれば、新しいSub-EpicやIssueとして次のバックログへ追加します。
 
 ## まとめ
 
-今回の流れを通して、AI駆動開発ではコードを生成する速さ以上に、工程をまたいで判断を引き継ぐことが大切だと感じました。企画で決めた開発範囲が設計に残り、その設計がIssueの受入基準になれば、実装に入ってから目的を見失いにくくなります。
+今回の流れを通して、AI駆動開発ではコードを生成する速さ以上に、工程をまたいで判断を引き継ぐことが大切だと感じました。
 
-Nexus Architectは、`reports/`に残した設計をGitHubまたはGitLabのIssueへ変換し、実装、レビュー、Pull RequestまたはMerge Request、マージまでつなぎます。Epicから個別のIssueへ作業を分解することで、AIが一度に抱える範囲を小さくしながら、プロダクト全体との関係を保てました。
+企画で決めた開発範囲が設計に残り、その設計がIssueの受入基準になれば、実装に入ってから目的を見失いにくくなります。
 
-レビューで得た知識が次のIssueへ渡る点も、この進め方の良さです。設計上の制約や過去の指摘を共有情報として蓄積するため、実装のたびに前提を説明し直す手間が減ります。途中で処理を止めても、Issueと`backlog-manifest.json`を確認すれば、続きから再開できます。
+Nexus Architectは、`reports/`に残した設計をGitHubまたはGitLabのIssueへ変換し、実装、レビュー、Pull RequestまたはMerge Request、マージまでつなぎます。
+Epicから個別のIssueへ作業を分解することで、AIが一度に抱える範囲を小さくしながら、プロダクト全体との関係を保てました。
 
-AIに任せる作業が増えても、バックログの承認、Pull Requestの確認、マージといった節目には人の判断を残せます。AIが進めやすい単位を用意し、人が確認すべき場所を明確にする。その積み重ねが、企画から実装までをつなぐAI駆動開発になると考えています。
+レビューで得た知識が次のIssueへ渡る点も、この進め方の良さです。
+設計上の制約や過去の指摘を共有情報として蓄積するため、実装のたびに前提を説明し直す手間が減ります。
+**途中で処理を止めても、Issueと`backlog-manifest.json`を確認すれば、続きから再開できます。**
+
+AIに任せる作業が増えても、バックログの承認、Pull Requestの確認、マージといった節目には人の判断を残せます。
+AIが進めやすい単位を用意し、人が確認すべき場所を明確にする。その積み重ねが、企画から実装までをつなぐAI駆動開発になると考えています。
