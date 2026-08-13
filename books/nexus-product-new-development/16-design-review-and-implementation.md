@@ -8,6 +8,9 @@ title: "設計レビューから実装判断へ"
 
 ## 5観点と重み
 
+![5観点と重みを補助する白黒線画](/images/nexus-product-new-development/section/section-16-review-dimensions.png)
+
+
 RADARのレビューは、次の5つです。
 
 | 観点 | 重み | 主に確認すること |
@@ -21,6 +24,9 @@ RADARのレビューは、次の5つです。
 初回の集約スコアは2.67で、判定はFAILでした。重大な課題は7件あり、すべて次工程へ進む前に解消すべき課題として扱いました。
 
 ## 初回レビューで不足していたもの
+
+![初回レビューで不足していたものを補助する白黒線画](/images/nexus-product-new-development/section/section-16-initial-review-gaps.png)
+
 
 機能、ドメイン、APIの設計は進んでいました。一方、本番運用に必要な基盤設計が体系的に不足していました。
 
@@ -44,6 +50,9 @@ MVPで価値を確認したあとでも、本番設計へ移るときにはこ�
 
 ## 4つの設計文書で重大課題を解消する
 
+![4つの設計文書で重大課題を解消するを補助する白黒線画](/images/nexus-product-new-development/section/section-16-four-design-documents.png)
+
+
 重大課題に対応するため、次の文書を追加しました。
 
 - `security-design.md`
@@ -55,6 +64,9 @@ MVPで価値を確認したあとでも、本番設計へ移るときにはこ�
 
 ## レビュー中に実バグを見つける
 
+![レビュー中に実バグを見つけるを補助する白黒線画](/images/nexus-product-new-development/section/section-16-real-bug-review.png)
+
+
 レビューは文章の採点だけではありません。実際に検証スクリプトを動かし、2件のバグを見つけました。
 
 1. `auth-api.yaml`末尾へMarkdownが混入し、YAMLとしてパースできなかった
@@ -63,6 +75,9 @@ MVPで価値を確認したあとでも、本番設計へ移るときにはこ�
 どちらもレビューと同時に修正しています。
 
 ## 再レビューの結果
+
+![再レビューの結果を補助する白黒線画](/images/nexus-product-new-development/section/section-16-rereview-result.png)
+
 
 重大課題への対応後、同じ5観点で再レビューしました。
 

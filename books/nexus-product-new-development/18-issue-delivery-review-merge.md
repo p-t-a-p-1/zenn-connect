@@ -31,6 +31,9 @@ Epic配下のIssueを順番に進める場合は、上位のオーケストレ�
 
 ## 実装前に共有情報を読む
 
+![実装前に共有情報を読むを補助する白黒線画](/images/nexus-product-new-development/section/section-18-shared-context.png)
+
+
 Issueごとにすべての設計背景を会話で説明し直すと、前提が揺れます。実装前に`reports/backlog/shared-context/`へ共有情報を置き、AIエージェントが毎回読む構成にします。
 
 | 用語 | 正式名称 | 説明 |
@@ -59,6 +62,9 @@ DealとDealStatusHistoryは、1つのトランザクションで保存する。
 
 ## Issueの完了条件を受入基準にする
 
+![Issueの完了条件を受入基準にするを補助する白黒線画](/images/nexus-product-new-development/section/section-18-acceptance-criteria.png)
+
+
 Issueには、実装内容、検証可能な受入基準、参照した設計書を記載します。
 
 ```markdown
@@ -80,6 +86,9 @@ size: M
 受入基準は、AIへ渡すプロンプトではなく、実装とレビューの共通の完了条件です。設計書を参照元として残すことで、実装の都合で業務要件が変わっていないかも確認できます。
 
 ## 実装完了とマージ完了を分ける
+
+![実装完了とマージ完了を分けるを補助する白黒線画](/images/nexus-product-new-development/section/section-18-implementation-merge.png)
+
 
 実装が終わると、Issueは`status::review`へ進みます。コードを書いた時点では`status::done`にしません。ブランチ名にもIssue IDを含めると、コード、Pull Request、Issueを追跡できます。
 
@@ -114,6 +123,9 @@ feature/I1.1.1-create-deal
 レビューで得た知識は`review-knowledge.md`へ残します。たとえば、クライアントが渡した`ownerId`を信用しない、多対多の中間テーブルに一意性制約を置く、といったルールです。次のIssueでは、この知識を実装前提として読み込みます。
 
 ## マージ後に親の進捗を更新する
+
+![マージ後に親の進捗を更新するを補助する白黒線画](/images/nexus-product-new-development/section/section-18-parent-progress.png)
+
 
 Pull Requestがopenであること、修正必須の指摘がないこと、CIが成功していること、コンフリクトがないことを確認してから、次のワークフローでマージします。
 

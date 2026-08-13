@@ -8,6 +8,9 @@ title: "コンシェルジュMVP"
 
 ## MVPの目的
 
+![MVPの目的を補助する白黒線画](/images/nexus-product-new-development/section/section-10-mvp-purpose.png)
+
+
 MVPで確かめたかったのは、本番アーキテクチャの妥当性ではありません。
 
 - 商談状態をスプレッドシートより確認しやすいか
@@ -25,6 +28,9 @@ MVPで確かめたかったのは、本番アーキテクチャの妥当性で�
 
 ## 最初は検証サブセットから始める
 
+![最初は検証サブセットから始めるを補助する白黒線画](/images/nexus-product-new-development/section/section-10-validation-subset.png)
+
+
 初期のMVPは、SCP-001の商談ステータス管理と、SCP-002のアサイン可視化を中心に作りました。
 
 その後、ユーザーの明示的な判断で、SCP-003の遅延リスクとSCP-004の仮アサインもMVPへ追加しました。
@@ -34,6 +40,9 @@ MVPで確かめたかったのは、本番アーキテクチャの妥当性で�
 これは計画通りではありませんが、意思決定履歴にはその事実が残されています。AI駆動開発では、きれいな後付けストーリーにせず、計画から外れた判断も記録することが重要です。
 
 ## MVPにも業務トランザクションを持たせる
+
+![MVPにも業務トランザクションを持たせるを補助する白黒線画](/images/nexus-product-new-development/section/section-10-business-transaction.png)
+
 
 使い捨てMVPでも、仮アサインから正式アサインへの切り替えは、複数更新をまとめて扱う必要がありました。
 
@@ -48,6 +57,9 @@ Dealを受注へ更新
 MVPではSQLiteのトランザクションで実現しました。このコード自体は本番へ移植しませんでしたが、 **どこまでを一つの整合性境界にするか** という知識は本番設計へ引き継がれました。
 
 ## 動作確認とアーカイブ
+
+![動作確認とアーカイブを補助する白黒線画](/images/nexus-product-new-development/section/section-10-test-archive.png)
+
 
 MVPは型チェック、ビルド、PlaywrightによるE2E動作確認まで実施しました。
 

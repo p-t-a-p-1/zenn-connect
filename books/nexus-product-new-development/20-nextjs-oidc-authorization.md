@@ -8,11 +8,17 @@ title: "Next.js・OIDC・権限境界"
 
 ## 認証を後付けにしない
 
+![認証を後付けにしないを補助する白黒線画](/images/nexus-product-new-development/section/section-20-auth-first.png)
+
+
 フェーズ1の次は、AWS基盤よりBC-005認証を優先しました。
 
 業務アプリでは、認証だけでなく **誰がどの操作とデータへアクセスできるか** がAPI設計へ影響します。全員が全件を見られる状態で画面を作り切ると、後から取得条件とテストを広範囲に直すことになります。
 
 ## PermissionAggregateで操作権限を表す
+
+![PermissionAggregateで操作権限を表すを補助する白黒線画](/images/nexus-product-new-development/section/section-20-permission-aggregate.png)
+
 
 RADARは、ロールと操作の対応を`PermissionAggregate`へ集約しています。
 
@@ -30,6 +36,9 @@ MATRIX.put(Role.PM_LEADER, EnumSet.of(
 
 ## 操作権限と行レベル制御を分ける
 
+![操作権限と行レベル制御を分けるを補助する白黒線画](/images/nexus-product-new-development/section/section-20-operation-row-control.png)
+
+
 **SALESは商談を閲覧できる** という権限だけでは不十分です。営業は、自分が担当する商談または営業依頼で紐づいた商談だけを見られる必要があります。
 
 RADARでは、Controllerの`@PreAuthorize`に加え、Serviceで所有者条件を適用します。
@@ -39,6 +48,9 @@ RADARでは、Controllerの`@PreAuthorize`に加え、Serviceで所有者条件�
 フロントエンドでボタンを隠すことはUX上の補助です。実際の認可境界はバックエンドです。
 
 ## CookieセッションをSSRで中継する
+
+![CookieセッションをSSRで中継するを補助する白黒線画](/images/nexus-product-new-development/section/section-20-cookie-ssr.png)
+
 
 Next.jsはApp Routerを使い、読み取りをServer Components、更新をServer Actionsへ寄せています。
 
@@ -58,6 +70,9 @@ const response = await fetch(`${BACKEND_URL}${path}`, {
 `middleware.ts`は`JSESSIONID`の存在だけを高速確認し、`app/layout.tsx`の`requireSession()`がバックエンドへ問い合わせて実際のセッションを検証します。
 
 ## OIDCの契約不一致を実ログインで見つける
+
+![OIDCの契約不一致を実ログインで見つけるを補助する白黒線画](/images/nexus-product-new-development/section/section-20-oidc-login.png)
+
 
 当初、Google Cloud Consoleでのクライアント登録は開発環境外の作業として手順書へ切り出しました。
 

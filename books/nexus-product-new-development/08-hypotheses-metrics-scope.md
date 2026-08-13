@@ -8,6 +8,9 @@ RADARでは、機能の優先順位だけでなく、何が起きたら方針を
 
 ## Mustを並べるだけでは足りない
 
+![Mustを並べるだけでは足りないを補助する白黒線画](/images/nexus-product-new-development/section/section-08-must-not-enough.png)
+
+
 Productパイプラインでは、4つの中核機能をMustとしました。
 
 | ID プレフィックス | 意味 |
@@ -28,6 +31,9 @@ Productパイプラインでは、4つの中核機能をMustとしました。
 
 ## 最大崩壊インパクトの仮説
 
+![最大崩壊インパクトの仮説を補助する白黒線画](/images/nexus-product-new-development/section/section-08-collapse-impact.png)
+
+
 最初に重視したのが`ASM-001`です。
 
 > 専用アプリを作っても、利用者はGoogleスプレッドシートを優先して使い続けるのではないか。
@@ -42,6 +48,9 @@ Productパイプラインでは、4つの中核機能をMustとしました。
 
 ## 最大の差別化仮説
 
+![最大の差別化仮説を補助する白黒線画](/images/nexus-product-new-development/section/section-08-differentiation-hypothesis.png)
+
+
 `ASM-002`は仮アサインに関する仮説です。
 
 > 受注前に人員を仮押さえする業務が実際にあり、仮アサイン機能が使われるのではないか。
@@ -51,6 +60,9 @@ Productパイプラインでは、4つの中核機能をMustとしました。
 キル閾値は、対象者の半数以上が **該当する商談が思いつかない** と回答することです。その場合は、仮アサインの想定シナリオ自体を見直します。
 
 ## 未検証を未検証のまま残す
+
+![未検証を未検証のまま残すを補助する白黒線画](/images/nexus-product-new-development/section/section-08-unvalidated.png)
+
 
 すべての仮説が検証済みになったわけではありません。
 
@@ -66,6 +78,9 @@ Productパイプラインでは、4つの中核機能をMustとしました。
 未検証の項目を検証済みとして扱わないことは重要です。現在の成果物でも、定量効果とリスク検知の実効性は残課題として記録されています。
 
 ## IDで判断をつなぐ
+
+![IDで判断をつなぐを補助する白黒線画](/images/nexus-product-new-development/section/section-08-id-traceability.png)
+
 
 Vision、指標、スコープ、仮説にはIDが付いています。
 

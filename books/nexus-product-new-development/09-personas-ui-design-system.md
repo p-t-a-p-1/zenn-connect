@@ -8,6 +8,9 @@ title: "ペルソナ・UI・デザインシステム"
 
 ## ペルソナを業務ストーリーへ変える
 
+![ペルソナを業務ストーリーへ変えるを補助する白黒線画](/images/nexus-product-new-development/section/section-09-persona-story.png)
+
+
 ペルソナは、プロフィールを作ることが目的ではありません。どの場面で、誰が、何を判断するかを設計へ渡すために使います。
 
 RADARでは、4つのドメインストーリーを作りました。
@@ -20,6 +23,9 @@ RADARでは、4つのドメインストーリーを作りました。
 このストーリーが、後の画面とAPIの単位になります。
 
 ## 10枚の操作画面を作る
+
+![10枚の操作画面を作るを補助する白黒線画](/images/nexus-product-new-development/section/section-09-ten-screens.png)
+
 
 Productパイプラインでは、4ストーリーに対応する10操作画面のmid-fidelityモックを生成しました。
 
@@ -41,6 +47,9 @@ Productパイプラインでは、4ストーリーに対応する10操作画面�
 
 ## UIモックから機能とデータを抽出する
 
+![UIモックから機能とデータを抽出するを補助する白黒線画](/images/nexus-product-new-development/section/section-09-ui-to-model.png)
+
+
 画面を作ったあと、19の機能と主要なデータモデルを抽出しました。
 
 画面だけを先に作ると、見た目に必要なフィールドへ設計が偏ります。そこで、ドメインストーリー、機能、データを相互に確認しました。
@@ -59,6 +68,9 @@ Productパイプラインでは、4ストーリーに対応する10操作画面�
 
 ## デザイン原則をコードより先に決める
 
+![デザイン原則をコードより先に決めるを補助する白黒線画](/images/nexus-product-new-development/section/section-09-design-principles.png)
+
+
 確定情報と仮情報を色だけで区別しないことを、デザインシステムの必須ルールにしました。
 
 この判断には、2つの理由があります。
@@ -69,6 +81,9 @@ Productパイプラインでは、4ストーリーに対応する10操作画面�
 そのため、状態色に加え、ラベルと枠線を併用します。このルールは現在の`AssignmentCard`や`StatusBadge`にも残っています。
 
 ## 生成物を完成品だと思わない
+
+![生成物を完成品だと思わないを補助する白黒線画](/images/nexus-product-new-development/section/section-09-generated-not-finished.png)
+
 
 Productパイプラインは、UIモック、機能一覧、データモデルを短時間でそろえました。しかし、この時点の成果物は仮説を形にしたものです。
 

@@ -8,6 +8,9 @@ RADARの開発から得られたのは、特定の設計書やコードだけで
 
 ## RADARを作った流れ
 
+![RADARを作った流れを補助する白黒線画](/images/nexus-product-new-development/section/section-22-radar-flow.png)
+
+
 本書では、完成したRADARから始め、開発の起点へ戻って流れを追いました。
 
 ```mermaid
@@ -26,11 +29,17 @@ flowchart TD
 
 ## 型1：完成像より先に検証条件を決める
 
+![型1：完成像より先に検証条件を決めるを補助する白黒線画](/images/nexus-product-new-development/section/section-22-pattern-one.png)
+
+
 新規プロダクトでは、機能一覧を詳細にするほど安心してしまいます。
 
 RADARで本番投資を判断できたのは、ASM-001/002に検証方法とキル閾値を置いたためです。MVPが動いたことではなく、実利用で閾値へ抵触しなかったことをGoの根拠にしました。
 
 ## 型2：MVPのコードではなく学びを引き継ぐ
+
+![型2：MVPのコードではなく学びを引き継ぐを補助する白黒線画](/images/nexus-product-new-development/section/section-22-pattern-two.png)
+
 
 MVPはHonoとSQLite、本番はSpring BootとPostgreSQLです。
 
@@ -39,6 +48,9 @@ MVPはHonoとSQLite、本番はSpring BootとPostgreSQLです。
 MVPをアーカイブし、本番コードと混ぜなかったことで、それぞれの目的が明確になりました。
 
 ## 型3：レビューの数値を実装課題へ変える
+
+![型3：レビューの数値を実装課題へ変えるを補助する白黒線画](/images/nexus-product-new-development/section/section-22-pattern-three.png)
+
 
 MMI、DDD、5観点レビューのスコアは、評価のための評価ではありません。
 
@@ -52,6 +64,9 @@ MMI、DDD、5観点レビューのスコアは、評価のための評価では�
 このように、指摘を設計変更、コード、テストへ変えることが重要です。
 
 ## 型4：人間が判断する場所を残す
+
+![型4：人間が判断する場所を残すを補助する白黒線画](/images/nexus-product-new-development/section/section-22-pattern-four.png)
+
 
 RADARでは、AIエージェントが文書、コード、レビューを作りました。一方、次の判断はユーザーが行いました。
 
@@ -68,6 +83,9 @@ AIの自律性を高めることと、業務上の判断を委ねることは別
 
 ## 型5：未完了を正直に残す
 
+![型5：未完了を正直に残すを補助する白黒線画](/images/nexus-product-new-development/section/section-22-pattern-five.png)
+
+
 現在のRADARにも未完了項目があります。
 
 - ASM-004の定量効果測定
@@ -80,6 +98,9 @@ AIの自律性を高めることと、業務上の判断を委ねることは別
 これらを隠して **本番化完了** と表現せず、次の判断材料として残すことも品質の一部です。
 
 ## おわりに
+
+![おわりにを補助する白黒線画](/images/nexus-product-new-development/section/section-22-ending.png)
+
 
 Nexus Architectの価値は、大量の設計書を生成することだけではありません。
 

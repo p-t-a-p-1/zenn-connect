@@ -8,6 +8,9 @@ Architectパイプラインでは、MVPを本番コードへそのまま昇格�
 
 ## まずコードを調査する
 
+![まずコードを調査するを補助する白黒線画](/images/nexus-product-new-development/section/section-13-code-investigation.png)
+
+
 `architect:investigate`では、Hono + SQLiteのMVPを対象に、構造、依存、データアクセス、認証、テスト、ドメイン表現を確認しました。
 
 MVPには、検証に必要な画面と業務操作がありました。一方、バックエンドの主要責務は少数のファイルへ集中していました。
@@ -24,6 +27,9 @@ Controller
 短期間の検証には有効でも、本番機能を追加し続ける構造としては変更理由が集中しています。
 
 ## DDD移行準備度は40.5点だった
+
+![DDD移行準備度は40.5点だったを補助する白黒線画](/images/nexus-product-new-development/section/section-13-ddd-readiness.png)
+
 
 | 用語 | 正式名称 | 説明 |
 | :--- | :--- | :--- |
@@ -44,6 +50,9 @@ MVP調査では、DDD移行準備度が40.5/100、Needs Improvementと評価さ�
 
 ## MMIは66.0%、DDDは40.8%だった
 
+![MMIは66.0%、DDDは40.8%だったを補助する白黒線画](/images/nexus-product-new-development/section/section-13-mmi-ddd-scores.png)
+
+
 | 用語 | 正式名称 | 説明 |
 | :--- | :--- | :--- |
 | MMI | Modularity Maturity Index（モジュール成熟度指標） | 既存モジュールがマイクロサービスとして独立しやすい状態にあるかを評価する指標。各モジュールの独立性や責務分離の状態を数値化する |
@@ -59,6 +68,9 @@ Architectパイプラインでは、上記のMVPコード調査（40.5/100）と
 
 ## 調査で見つかった具体的なギャップ
 
+![調査で見つかった具体的なギャップを補助する白黒線画](/images/nexus-product-new-development/section/section-13-concrete-gaps.png)
+
+
 評価では、構造と具体的な差分の両方を確認しました。
 
 - 認証・認可が存在しない
@@ -72,6 +84,9 @@ Architectパイプラインでは、上記のMVPコード調査（40.5/100）と
 これらは、MVPで意図的に後回しにしたものと、実装中に生まれた技術的負債の両方を含みます。
 
 ## 数値を改善入力にする
+
+![数値を改善入力にするを補助する白黒線画](/images/nexus-product-new-development/section/section-13-scores-to-improvement.png)
+
 
 40.5点や40.8%という評価だけを見て、MVPを作り直すことが目的ではありません。
 

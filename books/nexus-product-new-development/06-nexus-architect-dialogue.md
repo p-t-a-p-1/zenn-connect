@@ -8,6 +8,9 @@ RADARは、最初から完成した要求をNexus Architectへ渡して作った
 
 ## 最初の入力
 
+![最初の入力を補助する白黒線画](/images/nexus-product-new-development/section/section-06-first-input.png)
+
+
 起点となった情報は、巨大な要求仕様書ではありませんでした。
 
 ```text
@@ -23,6 +26,9 @@ Googleスプレッドシートで管理している商談・案件をアプリ�
 ここからNexus Architectとの壁打ちで、対象ユーザー、価値、成功指標、やらないこと、検証方法を決めていきました。
 
 ## 対話型で進めた理由
+
+![対話型で進めた理由を補助する白黒線画](/images/nexus-product-new-development/section/section-06-dialogue-reason.png)
+
 
 新規プロダクトでは、AIが自動で決めると危険な論点があります。
 
@@ -49,6 +55,9 @@ RADARでは、AIエージェントが候補と推奨理由を出し、ユーザ�
 
 ## 会話を成果物へ変える
 
+![会話を成果物へ変えるを補助する白黒線画](/images/nexus-product-new-development/section/section-06-conversation-artifact.png)
+
+
 壁打ちを会話だけで終わらせないことも重要でした。
 
 たとえば、 **既存データは移行しない** という判断は、次の成果物へ反映されました。
@@ -61,6 +70,9 @@ RADARでは、AIエージェントが候補と推奨理由を出し、ユーザ�
 一つの判断が、スコープ、仮説、データ、API、リリース計画へ伝播しています。
 
 ## 自動化と人間の判断を分ける
+
+![自動化と人間の判断を分けるを補助する白黒線画](/images/nexus-product-new-development/section/section-06-automation-human.png)
+
 
 長い設計・実装では、AIエージェントに継続して作業させる場面もありました。
 一方、環境変更、外部サービス登録、スコープ変更、レビューを打ち切る判断は人間が行いました。

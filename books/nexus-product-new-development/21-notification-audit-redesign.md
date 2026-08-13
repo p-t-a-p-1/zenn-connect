@@ -8,6 +8,9 @@ title: "通知・監査・実利用からの再設計"
 
 ## コミット後に通知する
 
+![コミット後に通知するを補助する白黒線画](/images/nexus-product-new-development/section/section-21-commit-notify.png)
+
+
 通知は、遅延リスクなどの業務イベントを受けて作成します。
 
 RADARでは、`@TransactionalEventListener`を`AFTER_COMMIT`で実行します。
@@ -28,6 +31,9 @@ public void onRiskFlagDetected(RiskFlagDetectedEvent event) {
 
 ## 監査ログを同じトランザクションで記録する
 
+![監査ログを同じトランザクションで記録するを補助する白黒線画](/images/nexus-product-new-development/section/section-21-audit-transaction.png)
+
+
 正式化、仮アサイン、リスク対応では、`AuditService`をコア業務と同じトランザクションから呼びます。
 
 監査ログには、操作者、操作種別、対象リソース、時刻、変更前後の値を記録します。
@@ -35,6 +41,9 @@ public void onRiskFlagDetected(RiskFlagDetectedEvent event) {
 現在の方針では、監査ログの書き込みに失敗した場合、業務操作もロールバックします。一方、DBユーザーからUPDATE/DELETE権限を剥奪するINSERT-only運用は、RDS構築時の残課題です。
 
 ## 初期の背骨を見直す
+
+![初期の背骨を見直すを補助する白黒線画](/images/nexus-product-new-development/section/section-21-revisit-backbone.png)
+
 
 初期のRADARは、仮アサインをプロダクトの中心に置きました。BC-001〜003の実装後、認証（BC-005）と通知（BC-004）を追加しながら実利用を進めるなかで、業務フロー全体と照合する機会がありました。
 
@@ -59,6 +68,9 @@ public void onRiskFlagDetected(RiskFlagDetectedEvent event) {
 - 外部人材の調達コンテキスト
 
 ## 設計履歴と実コードの差を管理する
+
+![設計履歴と実コードの差を管理するを補助する白黒線画](/images/nexus-product-new-development/section/section-21-history-code-gap.png)
+
 
 `docs/design-history/`は初期パイプラインの履歴として凍結しています。後から機能を追加するたびに過去文書を完成形へ書き換えると、当時何を判断したか分からなくなります。
 

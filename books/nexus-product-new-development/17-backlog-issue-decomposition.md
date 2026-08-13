@@ -23,6 +23,9 @@ Issueには、実装内容、受入基準、参照する設計書、作業規模
 
 ## `reports/`をバックログへ変換する
 
+![`reports/`をバックログへ変換するを補助する白黒線画](/images/nexus-product-new-development/section/section-17-reports-to-backlog.png)
+
+
 Nexus Architectは、企画・設計の成果物を`reports/`へ保存します。代表的な構成は次のとおりです。
 
 ```text
@@ -47,6 +50,9 @@ reports/
 たとえば、1つのIssueが`FEAT-001`と`API-001`を参照していれば、実装対象の機能とAPI設計をたどれます。この関係は`work/traceability.json`にも記録し、企画の判断がどの実装へ届いたかを確認できるようにします。
 
 ## `export-backlog`は計画を先に作る
+
+![`export-backlog`は計画を先に作るを補助する白黒線画](/images/nexus-product-new-development/section/section-17-export-backlog.png)
+
 
 設計がそろったら、Claude Codeで次のワークフローを実行します。
 
@@ -78,6 +84,9 @@ Epic
 目標値が決まっていない指標は`TBD`として残します。仮説検証を通過していても、需要や採算性まで実証されたとは限りません。未確定の情報を埋めず、検証方法が決まっているかを確認してから登録します。
 
 ## manifestで設計と実装の対応を残す
+
+![manifestで設計と実装の対応を残すを補助する白黒線画](/images/nexus-product-new-development/section/section-17-manifest-traceability.png)
+
 
 実際のmanifestは多数のノードを含むため、本書ではEpicとIssueを1件ずつ抜粋します。ほかのSub-Epic、長い本文、全URL、全実装ファイルは省略しています。
 

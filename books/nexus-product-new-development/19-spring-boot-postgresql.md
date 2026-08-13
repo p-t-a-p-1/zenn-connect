@@ -8,6 +8,9 @@ title: "Spring BootとPostgreSQLの実装"
 
 ## Dockerでビルド環境をそろえる
 
+![Dockerでビルド環境をそろえるを補助する白黒線画](/images/nexus-product-new-development/section/section-19-docker-build.png)
+
+
 実装開始時、ホストにはJDKとGradleがありませんでした。
 
 選択肢は、ホストへインストールする、コードだけ作る、Dockerでビルドする、の3つです。ユーザーはDockerを選びました。
@@ -24,6 +27,9 @@ docker run --rm -v "$PWD":/app -w /app \
 
 ## フェーズ1で実装したもの
 
+![フェーズ1で実装したものを補助する白黒線画](/images/nexus-product-new-development/section/section-19-phase-one.png)
+
+
 最初に、BC-001、BC-002、BC-003を実装しました。
 
 | BC | Javaパッケージ | 主な実装 |
@@ -35,6 +41,9 @@ docker run --rm -v "$PWD":/app -w /app \
 Controller、Service、Repositoryを分離し、Flywayだけがスキーマを変更する構成にしました。Hibernateは`ddl-auto: validate`で、マイグレーションとの差分があれば起動を失敗させます。
 
 ## ドメインルールを集約へ置く
+
+![ドメインルールを集約へ置くを補助する白黒線画](/images/nexus-product-new-development/section/section-19-domain-aggregate.png)
+
 
 `Assignment`は、単なるJPAのデータ入れ物ではありません。
 
@@ -59,6 +68,9 @@ public void formalize() {
 業務ルールをControllerやフォームだけへ置かず、集約自身が不正な状態を拒否します。
 
 ## テストでレビュー課題を確認する
+
+![テストでレビュー課題を確認するを補助する白黒線画](/images/nexus-product-new-development/section/section-19-tests-review.png)
+
 
 初期フェーズでは、重複アサイン防止とIdempotency-Keyを統合テストで確認しました。
 

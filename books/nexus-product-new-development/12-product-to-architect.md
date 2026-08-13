@@ -8,6 +8,9 @@ MVP検証で価値仮説を確認したあと、Productパイプラインの成�
 
 ## 本番化はMVPの延長ではない
 
+![本番化はMVPの延長ではないを補助する白黒線画](/images/nexus-product-new-development/section/section-12-production-not-mvp.png)
+
+
 コンシェルジュMVPには、実際に使われた業務フローがあります。一方、本番運用に必要な認証、権限、監査、障害復旧、運用監視は備えていません。
 
 そのため、MVPコードをそのまま整えて本番化するのではなく、要求定義から再開しました。
@@ -28,6 +31,9 @@ Architectパイプライン
 ```
 
 ## 引き継いだ要求ベースライン
+
+![引き継いだ要求ベースラインを補助する白黒線画](/images/nexus-product-new-development/section/section-12-requirement-baseline.png)
+
 
 `reports/00_core`から`04_quality`までの成果物を、Architect側の入力として扱いました。
 
@@ -61,6 +67,9 @@ architect:define-requirements
 
 ## 本番技術スタックを決める
 
+![本番技術スタックを決めるを補助する白黒線画](/images/nexus-product-new-development/section/section-12-technology-stack.png)
+
+
 要求定義で、次の技術スタックを選びました。
 
 | 用語 | 正式名称 | 説明 |
@@ -79,6 +88,9 @@ MVPのHonoとSQLiteを採用し続けなかった理由は、MVPの失敗では�
 
 ## モジュラーモノリスを選ぶ
 
+![モジュラーモノリスを選ぶを補助する白黒線画](/images/nexus-product-new-development/section/section-12-modular-monolith.png)
+
+
 設計パイプラインでは、マイクロサービス化の必要性も評価しました。
 
 RADARの初期規模では、サービスごとのデプロイ、分散トランザクション、独立運用を持ち込む効果より、複雑さの方が大きいと判断しました。
@@ -88,6 +100,9 @@ RADARの初期規模では、サービスごとのデプロイ、分散トラン
 同じ理由で、Kubernetesも初期構成では過剰投資と判断し、AWS ECS/Fargateを選びました。
 
 ## ScalarDBを採用しなかった理由
+
+![ScalarDBを採用しなかった理由を補助する白黒線画](/images/nexus-product-new-development/section/section-12-scalardb-decision.png)
+
 
 Nexus ArchitectにはScalarDB適用性を評価する流れもあります。しかしRADARは、単一PostgreSQL内のローカルトランザクションで中核処理を完結できます。
 

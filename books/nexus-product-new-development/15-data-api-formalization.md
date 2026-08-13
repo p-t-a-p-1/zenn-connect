@@ -8,6 +8,9 @@ RADARの設計で最も重要な技術的論点は、仮アサインの正式化
 
 ## 正式化APIを業務操作として表す
 
+![正式化APIを業務操作として表すを補助する白黒線画](/images/nexus-product-new-development/section/section-15-formalization-api.png)
+
+
 正式化は、Assignmentの種別を1件ずつ更新するCRUDではありません。
 
 ```http
@@ -20,6 +23,9 @@ Idempotency-Key: <UUID>
 業務上の意味を持つ操作としてAPIを定義することで、認可、監査、冪等性、トランザクションの単位を合わせられます。
 
 ## トランザクション内で行ロックを取る
+
+![トランザクション内で行ロックを取るを補助する白黒線画](/images/nexus-product-new-development/section/section-15-row-lock.png)
+
 
 現在の`AssignmentFormalizationService`は、最初にDealを`SELECT ... FOR UPDATE`相当で取得します。
 
@@ -42,6 +48,9 @@ public FormalizationResult formalizeDealAssignments(
 
 ## Idempotency-Keyを画面から保持する
 
+![Idempotency-Keyを画面から保持するを補助する白黒線画](/images/nexus-product-new-development/section/section-15-idempotency-key.png)
+
+
 バックエンドがIdempotency-Keyに対応していても、画面がクリックごとに新しいキーを作ると再送を検知できません。
 
 RADARの`FormalizeAction`では、コンポーネントのマウント時に一度だけ生成します。
@@ -53,6 +62,9 @@ const [idempotencyKey] = useState(() => crypto.randomUUID());
 失敗後に再送しても同じキーを使います。フロントエンドとバックエンドを一つの冪等性設計として扱っています。
 
 ## PostgreSQLを最後の防波堤にする
+
+![PostgreSQLを最後の防波堤にするを補助する白黒線画](/images/nexus-product-new-development/section/section-15-postgresql-backstop.png)
+
 
 正式アサインの期間重複は、アプリケーションの事前チェックだけでは完全に防げません。並行リクエストが同じ空き期間を確認し、同時に保存する可能性があるためです。
 
@@ -68,6 +80,9 @@ EXCLUDE USING gist (
 現在のマイグレーションでは、業務変更に合わせて対象を **正式かつ終了日があり、準委任同士** に絞っています。
 
 ## flushで例外の発生位置を制御する
+
+![flushで例外の発生位置を制御するを補助する白黒線画](/images/nexus-product-new-development/section/section-15-flush-exception.png)
+
 
 | 用語 | 正式名称 | 説明 |
 | :--- | :--- | :--- |

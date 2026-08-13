@@ -8,6 +8,9 @@ Productパイプラインの前半では、機能一覧を作る前に、Vision�
 
 ## Visionを先に置く
 
+![Visionを先に置くを補助する白黒線画](/images/nexus-product-new-development/section/section-07-vision.png)
+
+
 RADARのVisionは、次のように整理されました。
 
 > 商談から案件完了までの状態とアサインをリアルタイムに可視化し、誰が見ても **今どうなっているか** が一目でわかる組織をつくる。
@@ -25,6 +28,9 @@ RADARのVisionは、次のように整理されました。
 後の実装で、PostgreSQL排他制約や **破線＋仮ラベル** が採用されたのは、この段階の原則があったためです。
 
 ## Productパイプラインの実行順
+
+![Productパイプラインの実行順を補助する白黒線画](/images/nexus-product-new-development/section/section-07-product-pipeline.png)
+
 
 RADARでは、方向性を一度に生成せず、次の順序で成果物を積み上げました。
 
@@ -50,6 +56,9 @@ define-vision（ビジョン定義）
 
 ## 自社利用を最初の市場にする
 
+![自社利用を最初の市場にするを補助する白黒線画](/images/nexus-product-new-development/section/section-07-inhouse-market.png)
+
+
 将来的なSaaS化は候補に残しつつ、最初の利用先は自社としました。
 
 この判断により、初期設計では次を選べます。
@@ -62,6 +71,9 @@ define-vision（ビジョン定義）
 将来の可能性を捨てず、現在必要な複雑さだけを持つ方針です。
 
 ## 仮アサインを差別化点として扱う
+
+![仮アサインを差別化点として扱うを補助する白黒線画](/images/nexus-product-new-development/section/section-07-tentative-assignment.png)
+
 
 | 用語 | 正式名称 | 説明 |
 | :--- | :--- | :--- |
@@ -85,6 +97,9 @@ RADARは、この間にある業務を狙いました。
 
 ## ペルソナを選ぶ
 
+![ペルソナを選ぶを補助する白黒線画](/images/nexus-product-new-development/section/section-07-persona-choice.png)
+
+
 プライマリペルソナは、PM/リーダーの田中さんです。
 
 :::message alert
@@ -101,6 +116,9 @@ RADARは、この間にある業務を狙いました。
 セカンダリペルソナとして、商談状態を更新する営業の佐藤さんを置きました。
 
 ## North Star Metricを決める
+
+![North Star Metricを決めるを補助する白黒線画](/images/nexus-product-new-development/section/section-07-north-star.png)
+
 
 :::message
 North Star Metric（ノーススターメトリック）とは、企業が長期的なビジネス成長を目指すために設定する最も重要な指標です。 

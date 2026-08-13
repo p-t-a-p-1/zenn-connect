@@ -40,6 +40,9 @@ com.radar.app
 
 ## （フロントエンド）読み取りはServer Components、更新はServer Actions
 
+![（フロントエンド）読み取りはServer Components、更新はServer Actionsを補助する白黒線画](/images/nexus-product-new-development/section/section-04-server-components-actions.png)
+
+
 フロントエンドは、ブラウザからバックエンドへ直接アクセスする構成ではありません。
 
 Server Componentsからの読み取りは`apiFetch()`へ集約し、ブラウザから届いたCookieをバックエンドへ中継します。すべてのデータがセッションに依存するため、取得には`cache: 'no-store'`を指定しています。
@@ -69,6 +72,9 @@ Server Componentsからの読み取りは`apiFetch()`へ集約し、ブラウザ
 
 ## 設計履歴をアーカイブする
 
+![設計履歴をアーカイブするを補助する白黒線画](/images/nexus-product-new-development/section/section-04-design-history-archive.png)
+
+
 `docs/design-history/`には、ProductパイプラインとArchitectパイプラインが生成した成果物が残っています。各`reports/`ディレクトリの具体的な使われ方は、次章でNexus Architectのパイプラインと合わせて読むとより理解しやすくなります。
 
 ```text
@@ -92,6 +98,9 @@ reports/
 `work/traceability.json`は、Vision、仮説、スコープ、機能、要求、API、境界コンテキストのIDをつなぎます。AIが生成した文書をフォルダへ置くだけで終わらず、後から設計判断をたどれる状態にしています。
 
 ## MVPは削除せず凍結する
+
+![MVPは削除せず凍結するを補助する白黒線画](/images/nexus-product-new-development/section/section-04-mvp-frozen.png)
+
 
 Hono、SQLite、React、Viteで作ったコンシェルジュMVPは、`docs/concierge-mvp-archive/`へ移動しました。
 
