@@ -33,6 +33,11 @@ Epic配下のIssueを順番に進める場合は、上位のオーケストレ�
 
 Issueごとにすべての設計背景を会話で説明し直すと、前提が揺れます。実装前に`reports/backlog/shared-context/`へ共有情報を置き、AIエージェントが毎回読む構成にします。
 
+| 用語 | 正式名称 | 説明 |
+| :--- | :--- | :--- |
+| SLA | Service Level Agreement（サービス品質合意） | 可用性・応答時間などの品質目標を定めた合意文書 |
+| NFR | Non-Functional Requirements（非機能要件） | 性能・可用性・セキュリティなど機能以外の品質特性に関する要件 |
+
 | ファイル | 内容 |
 | :--- | :--- |
 | `architecture-guardrails.md` | パッケージ境界と技術選定の制約 |

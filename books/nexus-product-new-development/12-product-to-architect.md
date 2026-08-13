@@ -63,6 +63,10 @@ architect:define-requirements
 
 要求定義で、次の技術スタックを選びました。
 
+| 用語 | 正式名称 | 説明 |
+| :--- | :--- | :--- |
+| OIDC | OpenID Connect | OAuth 2.0を拡張した認証プロトコル。Googleなどのアイデンティティプロバイダーと連携してログインを実現する |
+
 | 領域 | 技術 |
 | :--- | :--- |
 | Frontend | React / Next.js |

@@ -32,9 +32,13 @@ com.radar.app
 └── audit            横断的な監査ログ
 ```
 
+| 用語 | 正式名称 | 説明 |
+| :--- | :--- | :--- |
+| `BC` | Bounded Context（境界コンテキスト） | ドメイン駆動設計で定義する業務責務の単位。RADARでは`BC-001`〜`BC-006`のように連番で管理する |
+
 現在の成果物には、バックエンドのJavaソース約190ファイル、テストクラス40件以上、15個のNext.jsページ、20本以上のFlywayマイグレーションがあります。
 
-## 読み取りはServer Components、更新はServer Actions
+## （フロントエンド）読み取りはServer Components、更新はServer Actions
 
 フロントエンドは、ブラウザからバックエンドへ直接アクセスする構成ではありません。
 
@@ -78,6 +82,12 @@ reports/
 ├── 08_infrastructure セキュリティ、監視、DR、AWS
 └── review            5観点レビュー
 ```
+
+| 用語 | 正式名称 | 説明 |
+| :--- | :--- | :--- |
+| NFR | Non-Functional Requirements（非機能要件） | 機能以外の品質特性（性能・可用性・セキュリティなど）に関する要件 |
+| SLA | Service Level Agreement（サービス品質合意） | システムの可用性や応答時間などの品質目標を定めた合意文書 |
+| DR | Disaster Recovery（ディザスタリカバリ） | 障害・災害時にシステムを復旧させるための計画と手順 |
 
 `work/traceability.json`は、Vision、仮説、スコープ、機能、要求、API、境界コンテキストのIDをつなぎます。AIが生成した文書をフォルダへ置くだけで終わらず、後から設計判断をたどれる状態にしています。
 

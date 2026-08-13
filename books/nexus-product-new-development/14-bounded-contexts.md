@@ -51,7 +51,7 @@ Deal集約とAssignment集約は、それぞれ独立した不変条件を持ち
 
 モジュラーモノリスでも、他コンテキストのRepositoryを直接呼び始めると境界が崩れます。
 
-設計では、メンバー参照はサービス層またはACLを経由し、通知は業務イベントから受け取る形にしました。調達機能が後から加わった際も、正式アサイン作成は`ProcurementAssignmentGateway`を通し、調達側がAssignmentRepositoryを直接操作しない構造にしています。
+設計では、メンバー参照はサービス層またはACL（Anti-Corruption Layer：腐敗防止層。異なる境界コンテキスト間でモデルが混入しないよう変換を担う層）を経由し、通知は業務イベントから受け取る形にしました。調達機能が後から加わった際も、正式アサイン作成は`ProcurementAssignmentGateway`を通し、調達側がAssignmentRepositoryを直接操作しない構造にしています。
 
 ## 実利用で境界を追加する
 
