@@ -1,5 +1,5 @@
 ---
-title: "【AI駆動プロダクト開発 第2回】AIに要件定義を丸投げしない：Vision・仮説・UIをつなぐ壁打ち術"
+title: "【AI駆動プロダクト開発 第2回】AIと進める要件定義"
 emoji: "🧭"
 type: "tech"
 topics: ["ai","product","mvp","ux","requirements"]

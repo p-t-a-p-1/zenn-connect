@@ -1,5 +1,5 @@
 ---
-title: "【AI駆動プロダクト開発 第4回】設計レビューで重大課題7件：冪等性・排他制約・運用設計をどう直したか"
+title: "【AI駆動プロダクト開発 第4回】本番運用に向けた設計レビュー"
 emoji: "🛡️"
 type: "tech"
 topics: ["architecture","ddd","postgresql","designreview","ai"]

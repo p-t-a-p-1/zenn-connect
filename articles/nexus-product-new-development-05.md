@@ -1,5 +1,5 @@
 ---
-title: "【AI駆動プロダクト開発 第5回】Spring Boot × Next.js：認証・監査・通知までAI設計をコードに落とす"
+title: "【AI駆動プロダクト開発 第5回】Spring Boot × Next.jsで作る業務基盤"
 emoji: "🚀"
 type: "tech"
 topics: ["springboot","nextjs","security","architecture","ai"]

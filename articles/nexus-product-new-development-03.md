@@ -1,5 +1,5 @@
 ---
-title: "【AI駆動プロダクト開発 第3回】MVPのコードは捨てる：価値検証からDDD・本番設計へつなぐ方法"
+title: "【AI駆動プロダクト開発 第3回】MVPから本番設計へ"
 emoji: "🧪"
 type: "tech"
 topics: ["mvp","ddd","architecture","ai","springboot"]
