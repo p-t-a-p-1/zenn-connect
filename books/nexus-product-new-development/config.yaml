@@ -1,7 +1,7 @@
 title: "AIエージェントと進めるソフトウェア開発"
 summary: "AIエージェントは、プロダクト開発のどこまでを担えるのか。社内向け案件管理アプリRADARを題材に、Claude CodeとNexus Architectとの壁打ちから、仮説検証、設計、Issue分解、実装、レビュー、実運用後の改善まで、人が判断しながら開発を前へ進める方法を実例で解説します。"
-topics: ["ai","claudecode","product","architecture","github"]
-published: false
+topics: ["ai","claudecode","product","architecture","AI駆動開発"]
+published: true
 price: 0
 toc_depth: 2
 chapters:
