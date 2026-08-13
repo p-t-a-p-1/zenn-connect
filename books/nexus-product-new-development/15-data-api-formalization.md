@@ -38,7 +38,7 @@ public FormalizationResult formalizeDealAssignments(
 }
 ```
 
-事前条件チェックをロックの外で行うと、確認後から更新までの間に別リクエストが状態を変えるTOCTOU競合が起きます。設計レビューでこの問題が指摘され、ロック取得後に確認する形へ修正しました。
+事前条件チェックをロックの外で行うと、確認後から更新までの間に別リクエストが状態を変えるTOCTOU競合（Time Of Check To Time Of Use）が起きます。設計レビューでこの問題が指摘され、ロック取得後に確認する形へ修正しました。
 
 ## Idempotency-Keyを画面から保持する
 

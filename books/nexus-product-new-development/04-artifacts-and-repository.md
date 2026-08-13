@@ -65,7 +65,7 @@ Server Componentsからの読み取りは`apiFetch()`へ集約し、ブラウザ
 
 ## 設計履歴をアーカイブする
 
-`docs/design-history/`には、ProductパイプラインとArchitectパイプラインが生成した成果物が残っています。
+`docs/design-history/`には、ProductパイプラインとArchitectパイプラインが生成した成果物が残っています。各`reports/`ディレクトリの具体的な使われ方は、次章でNexus Architectのパイプラインと合わせて読むとより理解しやすくなります。
 
 ```text
 reports/

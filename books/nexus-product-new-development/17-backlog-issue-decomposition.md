@@ -4,7 +4,7 @@ title: "設計をEpic・Sub-Epic・Issueへ分解する"
 
 本番設計ができたら、次は実装できる大きさへ分解します。Nexus Architectでは、設計内容をEpic、Sub-Epic、Issueの階層へ変換し、Issueを実装単位として扱います。
 
-ここで紹介するGitHub連携とmanifestの例は、Nexus Architectの一般化された出力例です。RADARの実装実績と混同しないよう、プロダクト名、URL、パッケージ名は匿名化しています。
+ここで紹介するGitHub連携とmanifestの例は、Nexus Architectの一般化された出力例です。RADARの実際のIssue情報は非公開のため、プロダクト名、URL、パッケージ名を匿名化した同等構造の例で説明します。
 
 ## バックログを開発の契約にする
 
